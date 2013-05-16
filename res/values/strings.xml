@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Sleek Android</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>    
+    <string name="title_activity_command_runner">CommandRunner</string>
+    <string name="menu_rerun">ReRun</string>
+    <string name="command_body">Text from a command goes here.</string>
+    <string name="lbl_command_name">Command:</string>
+    <string name="command_name">Command to run</string>
+    <string name="menu_share">Share this result.</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="btn_run">Run</string>
+    <string name="lbl_installed_apps">Installed Applications</string>
+    <string name="btn_start_service">Toggle Collection Service</string>
+    <string name="title_activity_application_detail_view">Default Application</string>
+    <string name="sort_by_label_text">Sort by: </string>
+    <string name="sort_order_label_text">Sort order: </string>
+     <string name="extraInfo">Extra Information About App."</string>
+    <string name="dbRatingStr">Overall Reviews:</string>
+    <string name="userRatingStr">Your Review:</string>
+    <string name="hmnLogo">HMN Logo"</string>
+    
+    <string name="app_class_all">All Apps</string>
+    <string name="app_class_active">Active Apps</string>
+    <string name="app_class_run">Running Apps</string>
+    <string name="app_class_fore">Foreground Apps</string>
+    <string name="app_class_back">Background Apps</string>
+    <string name="app_class_cache">Cached Apps</string>
+    <string name="app_class_not_running">Not Running Apps</string>
+   <!--
+    <string-array name="sort_by">
+        <item>Cost</item>
+        <item>Benefit</item>
+        <item>Name</item>
+    </string-array>
+	-->
+	
+</resources>

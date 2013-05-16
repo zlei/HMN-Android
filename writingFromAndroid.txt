@@ -1,0 +1,8 @@
+/*
+try {
+	File dir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+	PrintStream output = new PrintStream(new FileOutputStream(new File(dir,"readable.json")));
+	output.print(json.toString(4));
+    output.close();
+} catch (IOException e) {System.out.println("ERROR");}
+*/

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/list"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:contentDescription="@string/hmnLogo"
+        android:src="@drawable/hmnlogo" />
+
+    <Button
+        android:id="@+id/allButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/app_class_all" />
+    
+    <Button
+        android:id="@+id/activeButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/app_class_active" />
+
+    <Button
+        android:id="@+id/runningButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/app_class_run" />
+
+    <Button
+        android:id="@+id/foregroundButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/app_class_fore" />
+
+    <Button
+        android:id="@+id/backgroundButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/app_class_back" />
+
+    <Button
+        android:id="@+id/cachedButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/app_class_cache" />
+
+    <Button
+        android:id="@+id/notRunningButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/app_class_not_running" />
+	
+</LinearLayout>
