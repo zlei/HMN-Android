@@ -14,12 +14,12 @@ import java.util.Locale;
  */
 public enum AppState
 {
-	ACTIVE("active"),			// currently being viewed by the user
-	RUNNING("running"),			// running, no matter the state
-	FOREGROUND("foreground"),	// minimized
-	BACKGROUND("background"),	// running in the background
-	CACHED("cached"),			// not running, but can still receive signals from the system. This state is defined by Android.
-	NOTRUNNING("not running");	// not running in any capacity
+	ACTIVE("Active"),			// currently being viewed by the user
+	RUNNING("Running"),			// running, no matter the state
+	FOREGROUND("Foreground"),	// minimized
+	BACKGROUND("Background"),	// running in the background
+	CACHED("Cached"),			// not running, but can still receive signals from the system. This state is defined by Android.
+	NOTRUNNING("Not running");	// not running in any capacity
 	
 	private final String name;
 	

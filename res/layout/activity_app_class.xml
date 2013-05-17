@@ -10,9 +10,13 @@
     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="fill_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:contentDescription="@string/hmnLogo"
         android:src="@drawable/hmnlogo" />
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" 
+    android:orientation="vertical" >
 
     <Button
         android:id="@+id/allButton"
@@ -56,4 +60,5 @@
         android:layout_height="wrap_content"
         android:text="@string/app_class_not_running" />
 	
+	</LinearLayout>
 </LinearLayout>

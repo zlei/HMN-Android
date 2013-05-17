@@ -144,12 +144,12 @@ public class NetUsageList extends LinkedList<NetUsageEntry> {
 	{
 		StringBuilder netUsageStr = new StringBuilder();
 		
-		netUsageStr.append("UPLOADED\n");
+		netUsageStr.append("\nUPLOADED\n");
 		netUsageStr.append(String.format("Total: %s\n",getPrettyBytes(getUploadedBytes)));
 		netUsageStr.append(String.format("In foreground: %s\n",getPrettyForegroundBytes(getUploadedBytes)));
 		netUsageStr.append(String.format("In background: %s\n",getPrettyForegroundBytes(getUploadedBytes)));
 		
-		netUsageStr.append("DOWNLOADED\n");
+		netUsageStr.append("\nDOWNLOADED\n");
 		netUsageStr.append(String.format("Total: %s\n",getPrettyBytes(getDownloadedBytes)));
 		netUsageStr.append(String.format("In foreground: %s\n",getPrettyForegroundBytes(getDownloadedBytes)));
 		netUsageStr.append(String.format("In background: %s\n",getPrettyForegroundBytes(getDownloadedBytes)));

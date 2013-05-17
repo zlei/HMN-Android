@@ -10,50 +10,48 @@ package edu.wpi.cs.peds.hmn.app;
 public final class R {
     public static final class attr {
     }
-    public static final class color {
-        public static final int custom_theme_color=0x7f060000;
-    }
     public static final class drawable {
-        public static final int db_ratingstars=0x7f020000;
-        public static final int db_star=0x7f020001;
-        public static final int db_star_empty=0x7f020002;
-        public static final int hmnlogo=0x7f020003;
-        public static final int ic_launcher=0x7f020004;
-        public static final int user_ratingstars=0x7f020005;
-        public static final int user_star=0x7f020006;
-        public static final int user_star_empty=0x7f020007;
+        public static final int custom_button=0x7f020000;
+        public static final int db_ratingstars=0x7f020001;
+        public static final int db_star=0x7f020002;
+        public static final int db_star_empty=0x7f020003;
+        public static final int hmnlogo=0x7f020004;
+        public static final int ic_launcher=0x7f020005;
+        public static final int user_ratingstars=0x7f020006;
+        public static final int user_star=0x7f020007;
+        public static final int user_star_empty=0x7f020008;
     }
     public static final class id {
-        public static final int activeButton=0x7f080003;
-        public static final int allButton=0x7f080002;
-        public static final int appBenefit=0x7f08001a;
-        public static final int appCost=0x7f080019;
-        public static final int appTitle=0x7f080017;
-        public static final int backgroundButton=0x7f080006;
-        public static final int cachedButton=0x7f080007;
-        public static final int dbRating=0x7f08000c;
-        public static final int dbRatingTitle=0x7f08000b;
-        public static final int foregroundButton=0x7f080005;
-        public static final int imageView1=0x7f080001;
-        public static final int lblapp_detail_title=0x7f08000a;
-        public static final int linearLayout1=0x7f080009;
-        public static final int linearLayout2=0x7f080012;
-        public static final int linearLayout3=0x7f080016;
-        public static final int list=0x7f080000;
-        public static final int menu_rerun=0x7f08001c;
-        public static final int menu_settings=0x7f08001b;
-        public static final int menu_share=0x7f08001d;
-        public static final int notRunningButton=0x7f080008;
-        public static final int runningButton=0x7f080004;
-        public static final int scrollView1=0x7f08000f;
-        public static final int sort_by_label=0x7f080013;
-        public static final int sort_by_spinner=0x7f080014;
-        public static final int sort_order_spinner=0x7f080015;
-        public static final int tablelayout=0x7f080018;
-        public static final int textView1=0x7f080011;
-        public static final int txt_app_info=0x7f080010;
-        public static final int userRatingTitle=0x7f08000d;
-        public static final int yourRating=0x7f08000e;
+        public static final int activeButton=0x7f070003;
+        public static final int allButton=0x7f070002;
+        public static final int appBenefit=0x7f07001a;
+        public static final int appCost=0x7f070019;
+        public static final int appTitle=0x7f070017;
+        public static final int backgroundButton=0x7f070006;
+        public static final int cachedButton=0x7f070007;
+        public static final int dbRating=0x7f07000c;
+        public static final int dbRatingTitle=0x7f07000b;
+        public static final int foregroundButton=0x7f070005;
+        public static final int imageView1=0x7f070001;
+        public static final int lblapp_detail_title=0x7f07000a;
+        public static final int linearLayout1=0x7f070009;
+        public static final int linearLayout2=0x7f070012;
+        public static final int linearLayout3=0x7f070016;
+        public static final int list=0x7f070000;
+        public static final int menu_rerun=0x7f07001c;
+        public static final int menu_settings=0x7f07001b;
+        public static final int menu_share=0x7f07001d;
+        public static final int notRunningButton=0x7f070008;
+        public static final int runningButton=0x7f070004;
+        public static final int scrollView1=0x7f07000f;
+        public static final int sort_by_label=0x7f070013;
+        public static final int sort_by_spinner=0x7f070014;
+        public static final int sort_order_spinner=0x7f070015;
+        public static final int tablelayout=0x7f070018;
+        public static final int textView1=0x7f070011;
+        public static final int txt_app_info=0x7f070010;
+        public static final int userRatingTitle=0x7f07000d;
+        public static final int yourRating=0x7f07000e;
     }
     public static final class layout {
         public static final int activity_app_class=0x7f030000;
@@ -62,9 +60,9 @@ public final class R {
         public static final int list_row=0x7f030003;
     }
     public static final class menu {
-        public static final int activity_application_detail_view=0x7f070000;
-        public static final int activity_command_runner=0x7f070001;
-        public static final int activity_main=0x7f070002;
+        public static final int activity_application_detail_view=0x7f060000;
+        public static final int activity_command_runner=0x7f060001;
+        public static final int activity_main=0x7f060002;
     }
     public static final class string {
         public static final int app_class_active=0x7f040015;
@@ -125,6 +123,8 @@ public final class R {
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f050001;
+        public static final int ApplicationStyle=0x7f050004;
+        public static final int buttonStyle=0x7f050005;
         public static final int dbRatingBar=0x7f050003;
         public static final int userRatingBar=0x7f050002;
     }
