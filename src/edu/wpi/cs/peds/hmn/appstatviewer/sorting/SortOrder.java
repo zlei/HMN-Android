@@ -19,7 +19,7 @@ import edu.wpi.cs.peds.hmn.stats.apps.GlobalAppList;
  */
 public enum SortOrder
 {
-	NAME("Name", new SortingComparators.SortByNameAtoZ(), new SortingComparators.SortByNameZtoA()),
+	NAME("Name", new SortingComparators.SortByNameZtoA(), new SortingComparators.SortByNameAtoZ()),
 	COST("Cost", new SortingComparators.SortByCostDec(), new SortingComparators.SortByCostAsc()),
 	BENEFIT("Benefit", new SortingComparators.SortByBenefitDec(), new SortingComparators.SortByBenefitAsc()),
 	USER_RATING("User Rating", new SortingComparators.SortByUserRatingDec() , new SortingComparators.SortByUserRatingAsc()),

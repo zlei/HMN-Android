@@ -12,10 +12,8 @@ import org.json.JSONObject;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-
 import edu.wpi.cs.peds.hmn.appcollector.AppState;
 import edu.wpi.cs.peds.hmn.appcollector.NetDevice;
-import edu.wpi.cs.peds.hmn.stats.costbenefit.CostBenefit;
 import edu.wpi.cs.peds.hmn.stats.costbenefit.StateChanges;
 import edu.wpi.cs.peds.hmn.stats.net.NetUsageEntry;
 import edu.wpi.cs.peds.hmn.stats.net.NetUsageList;
@@ -183,7 +181,10 @@ public class Application implements Serializable {
 	 */
 	public String getName()
 	{
-		return name == null ? packageName : name;
+		if(name == null) 
+			name = packageName;
+		name = name.substring(0,1).toUpperCase()+name.substring(1);
+		return name; 
 	}
 	
 	@Override

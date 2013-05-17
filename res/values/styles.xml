@@ -42,7 +42,7 @@
        <item name="android:textStyle">bold</item>
        <item name="android:textColor">#2C6700</item>
        <item name="android:gravity">center</item>
-      <item name="android:background">@drawable/custom_button</item>
+       <item name="android:background">@drawable/custom_button</item>
        <item name="android:padding">10dip</item>
    </style>
 </resources>
