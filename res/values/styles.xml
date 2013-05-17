@@ -33,7 +33,7 @@
     </style>
 
     <style 
-        name="ApplicationStyle" parent="AppTheme">
+        name="ApplicationStyle" parent="android:Theme">
   		<item name="android:buttonStyle">@style/buttonStyle</item>
  	</style>
   

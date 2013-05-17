@@ -24,7 +24,7 @@
             </intent-filter>
         </receiver>
         
-        <activity android:name="SleekAndroidActivity" android:enabled="true" android:exported="true">
+        <activity android:name="SleekAndroidActivity" android:enabled="true" android:exported="true" android:label="Sleek Android" android:icon="@drawable/ic_launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
