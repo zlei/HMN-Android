@@ -12,10 +12,9 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
-import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
 import android.widget.RatingBar;
+import android.widget.TextView;
 import edu.wpi.cs.peds.hmn.app.R;
 import edu.wpi.cs.peds.hmn.stats.apps.Application;
 import edu.wpi.cs.peds.hmn.stats.apps.GlobalAppList;
@@ -85,12 +84,6 @@ public class ApplicationDetailViewActivity extends Activity
 		}
 	}
 	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.activity_application_detail_view, menu);
-		return true;
-	}
-
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {

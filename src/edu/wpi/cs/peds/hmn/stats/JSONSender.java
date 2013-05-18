@@ -26,7 +26,7 @@ import android.os.Environment;
 import android.util.Log;
 import edu.wpi.cs.peds.hmn.log.HmnLog;
 import edu.wpi.cs.peds.hmn.stats.apps.GlobalAppList;
-
+import edu.wpi.cs.peds.hmn.app.SleekAndroidActivity;
 /**
  * POSTSs all collected data to the specified URL as JSON, and buffers data if
  * POSTing fails.
@@ -195,6 +195,11 @@ public class JSONSender extends AsyncTask<String,Object,Boolean>
 		Log.i(HmnLog.HMN_LOG_TAG,"Messages to send: " + jsonBuffer.size());
 		boolean success = true;
 		//only send data through WIFI
+		if(!SleekAndroidActivity.wifiConnected){
+			success = false;
+			Log.i(HmnLog.HMN_LOG_TAG,"Not on WIFI! Message NOT successfully sent.");
+			return success;
+		}
 		int counter = 0;
 
 		for (JSONObject jsonObj : new ArrayList<JSONObject>(jsonBuffer))
