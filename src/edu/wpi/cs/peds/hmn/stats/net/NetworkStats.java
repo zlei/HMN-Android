@@ -9,7 +9,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.net.TrafficStats;
-
 import edu.wpi.cs.peds.hmn.appcollector.AppState;
 
 /**

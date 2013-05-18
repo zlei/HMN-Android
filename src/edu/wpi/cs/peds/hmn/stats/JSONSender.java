@@ -24,7 +24,6 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.util.Log;
-
 import edu.wpi.cs.peds.hmn.log.HmnLog;
 import edu.wpi.cs.peds.hmn.stats.apps.GlobalAppList;
 
@@ -33,7 +32,7 @@ import edu.wpi.cs.peds.hmn.stats.apps.GlobalAppList;
  * POSTing fails.
  * 
  * @author Austin Noto-Moniz, austinnoto@wpi.edu
- *
+ * @author Zhenhao Lei, zlei@wpi.edu
  */
 public class JSONSender extends AsyncTask<String,Object,Boolean>
 {
@@ -154,7 +153,6 @@ public class JSONSender extends AsyncTask<String,Object,Boolean>
 				addToBuffer(json);
 			}
 		}
-		
 		transmitData();
 	}
 	
@@ -195,9 +193,10 @@ public class JSONSender extends AsyncTask<String,Object,Boolean>
 	private static boolean transmitData()
 	{
 		Log.i(HmnLog.HMN_LOG_TAG,"Messages to send: " + jsonBuffer.size());
-		
 		boolean success = true;
+		//only send data through WIFI
 		int counter = 0;
+
 		for (JSONObject jsonObj : new ArrayList<JSONObject>(jsonBuffer))
 		{
 			Log.i(HmnLog.HMN_LOG_TAG,"Sending JSON message");
@@ -216,8 +215,8 @@ public class JSONSender extends AsyncTask<String,Object,Boolean>
 				break;
 			}
 		}
-		
-		Log.i(HmnLog.HMN_LOG_TAG,"Sending complete.");
+
+	    Log.i(HmnLog.HMN_LOG_TAG,"Sending complete.");
 		Log.i(HmnLog.HMN_LOG_TAG,"Messages successfully sent: " + counter);
 		Log.i(HmnLog.HMN_LOG_TAG,"Messages buffered: " + jsonBuffer.size());
 		
@@ -225,6 +224,7 @@ public class JSONSender extends AsyncTask<String,Object,Boolean>
 			Log.e(HmnLog.HMN_LOG_TAG, "Data transmission was unsucessful.");
 		return success;
 	}
+
 	
 	/**
 	 * Converts all collected data into a JSON object.
