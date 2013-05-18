@@ -15,7 +15,7 @@ public final class R {
         public static final int db_ratingstars=0x7f020001;
         public static final int db_star=0x7f020002;
         public static final int db_star_empty=0x7f020003;
-        public static final int hmnlogo=0x7f020004;
+        public static final int hmn_logo=0x7f020004;
         public static final int ic_launcher=0x7f020005;
         public static final int user_ratingstars=0x7f020006;
         public static final int user_star=0x7f020007;

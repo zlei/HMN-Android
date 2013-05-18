@@ -12,7 +12,7 @@
         android:layout_alignParentRight="true"
         android:contentDescription="@string/hmnLogo"
         android:scaleType="fitXY"
-        android:src="@drawable/hmnlogo" />
+        android:src="@drawable/hmn_logo" />
 
 <LinearLayout
     android:layout_width="fill_parent"
