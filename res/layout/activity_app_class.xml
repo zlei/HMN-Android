@@ -7,7 +7,7 @@
     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="150dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:contentDescription="@string/hmnLogo"
@@ -16,57 +16,73 @@
 
 <LinearLayout
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" 
+    android:layout_height="fill_parent"
     android:layout_below="@+id/imageView1"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:paddingLeft="64dp"
+    android:paddingRight="64dp" >
 
     <Button
         android:id="@+id/allButton"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.14"
+        android:layout_weight="1"
+		android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp" 
         android:text="@string/app_class_all" />
     
     <Button
         android:id="@+id/activeButton"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.14"       
+        android:layout_weight="1"       
+ 		android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"       
         android:text="@string/app_class_active" />
 
     <Button
         android:id="@+id/runningButton"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.14"       
+        android:layout_weight="1"       
+		android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp" 
         android:text="@string/app_class_run" />
 
     <Button
         android:id="@+id/foregroundButton"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.14"       
+        android:layout_weight="1"       
+		android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp" 
         android:text="@string/app_class_fore" />
 
     <Button
         android:id="@+id/backgroundButton"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.14"       
+        android:layout_weight="1"       
+		android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp" 
         android:text="@string/app_class_back" />
 
     <Button
         android:id="@+id/cachedButton"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.14"       
+        android:layout_weight="1"       
+		android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp" 
         android:text="@string/app_class_cache" />
 
     <Button
         android:id="@+id/notRunningButton"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.14"       
+        android:layout_weight="1"       
+		android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp" 
         android:text="@string/app_class_not_running" />
 
 </LinearLayout>

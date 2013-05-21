@@ -10,8 +10,8 @@
         android:entryValues="@array/listValues"
      />
     <CheckBoxPreference
-        android:title="Show Summaries"
+        android:title="Show System Apps"
         android:defaultValue="false"
-        android:summary="Show a summary for each link."
-        android:key="summaryPref" />
+        android:summary="Show or hide system apps."
+        android:key="showSysPref" />
 </PreferenceScreen>

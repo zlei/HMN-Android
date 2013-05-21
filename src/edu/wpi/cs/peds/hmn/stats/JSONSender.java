@@ -194,7 +194,7 @@ public class JSONSender extends AsyncTask<String,Object,Boolean>
 	{
 		Log.i(HmnLog.HMN_LOG_TAG,"Messages to send: " + jsonBuffer.size());
 		boolean success = true;
-		//only send data through WIFI
+	//only send data through WIFI
 		if(!SleekAndroidActivity.wifiConnected){
 			success = false;
 			Log.i(HmnLog.HMN_LOG_TAG,"Not on WIFI! Message NOT successfully sent.");

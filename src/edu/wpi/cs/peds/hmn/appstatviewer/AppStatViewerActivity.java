@@ -22,11 +22,11 @@ import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
+import edu.wpi.cs.peds.hmn.app.R;
 import edu.wpi.cs.peds.hmn.appcollector.AppCollectorService;
 import edu.wpi.cs.peds.hmn.appcollector.AppCollectorService.MyBinder;
 import edu.wpi.cs.peds.hmn.appdetailviewer.ApplicationDetailViewActivity;
 import edu.wpi.cs.peds.hmn.appstatviewer.sorting.SortOrder;
-import edu.wpi.cs.peds.hmn.app.R;
 import edu.wpi.cs.peds.hmn.log.HmnLog;
 import edu.wpi.cs.peds.hmn.stats.apps.Application;
 import edu.wpi.cs.peds.hmn.stats.apps.GlobalAppList;
@@ -69,9 +69,13 @@ public class AppStatViewerActivity extends ListActivity implements IObserver {
 	public void onCreate(Bundle savedInstanceState)
 	{
 		super.onCreate(savedInstanceState);
-		
+	}
+
+	public void onStart(){
+		super.onStart();
 		setContentView(R.layout.activity_main);
 		
+//		Log.i(HmnLog.HMN_LOG_TAG,"!!!!!!!!!!!APPS GET STARTED!!!!!");
 		createSortingDropdown();
 		startAppCollector();
 		

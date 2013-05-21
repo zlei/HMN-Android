@@ -21,7 +21,7 @@
     <string name="hmnLogo">HMN Logo"</string>
     <string name="updated">Last updated:</string>
     <string name="lost_connection">Lost connection.</string>
-    <string name="wifi_connected">Wi-Fi reconnected.</string>
+    <string name="wifi_connected">Wi-Fi connected.</string>
     <string name="connection_error">Unable to load content. Check your network connection.</string>
     
     <string name="app_class_all">All Apps</string>

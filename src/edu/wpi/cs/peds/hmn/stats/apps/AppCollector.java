@@ -199,8 +199,7 @@ public class AppCollector
 		Application app = new Application(appName, packageName, uid, version);
 		return app;
 	}
-	
-	
+
 	/**
 	 * Attempts to retrieve info on the named package.
 	 * 

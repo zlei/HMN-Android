@@ -15,7 +15,7 @@ import org.json.JSONException;
 
 import android.app.ActivityManager;
 import android.content.pm.PackageManager;
-
+import edu.wpi.cs.peds.hmn.app.SleekAndroidActivity;
 import edu.wpi.cs.peds.hmn.appcollector.AppState;
 
 /**
@@ -25,6 +25,7 @@ import edu.wpi.cs.peds.hmn.appcollector.AppState;
  * In order to ensure only a single instance of this manager exists, it is
  * implemented as a singleton.
  * 
+ * @author Zhenhao Lei, zlei@wpi.edu
  * @author Austin Noto-Moniz, austinnoto@wpi.edu
  * 
  */
@@ -42,6 +43,10 @@ public class GlobalAppList
 	// The list of system packages to exclude from the app list
 	private final List<String> systemPackages = Arrays.asList(
 			//"android",								// Android System
+			"com.android.backupconfirm",
+			"com.android.sharedstoragebackup",
+			"com.android.wallpaper.holospiral",
+			"com.google.android.voicesearch",
 			"com.google.android.inputmethod.latin",	// Android Keyboard
 			"com.android.providers.calendar",		// Calendar Storage 
 			"com.google.android.deskclock",			// Clock
@@ -76,7 +81,6 @@ public class GlobalAppList
 		return globalAppList;
 	}
 	
-	
 	/**
 	 * Initializes the list of installed apps by querying the device, then
 	 * subtracts the hard coded system apps that are irrelevant.
@@ -88,10 +92,11 @@ public class GlobalAppList
 	{
 		this.packageManager = packageManager;
 		this.activityManager = activityManager;
-		
 		allApps = AppCollector.getAllApps(packageManager);
 		systemApps = findSystemApps();
+        if(!SleekAndroidActivity.hideSystemApp){
 		allApps.removeAll(systemApps);
+        }
 		displayedApps = allApps;
 	}
 	
