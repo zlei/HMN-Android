@@ -192,6 +192,7 @@ public class JSONSender extends AsyncTask<String,Object,Boolean>
 	 */
 	private static boolean transmitData()
 	{
+	    Log.e(HmnLog.HMN_LOG_TAG, jsonBuffer.toString());
 		Log.i(HmnLog.HMN_LOG_TAG,"Messages to send: " + jsonBuffer.size());
 		boolean success = true;
 	//only send data through WIFI
@@ -351,6 +352,7 @@ public class JSONSender extends AsyncTask<String,Object,Boolean>
 		{
 			try {
 				System.out.println(json.toString(4));
+	    	Log.e(HmnLog.HMN_LOG_TAG,"!!!!!!!!!!!!!!!!!!!"+ json.toString(4));
 			} catch (JSONException e) {}
 		}
 		if (toFile)

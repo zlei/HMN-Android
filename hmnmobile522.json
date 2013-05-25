@@ -5,23 +5,13 @@
 	"type": "object",
 	"required": ["id"],
 	
-	"definitions": { 
-		"state": {
-			"type": "object",
-			"properties": {
-				"timestamp": {"description": "The time app state has changed", "type": "number"},
-				"action": {"enum": ["close", "start"]}
-			},
-			"additionalProperties": false
-		},
-		
+	"definitions": {
 		"deviceInfo": {
 			"type": "object",
 			"properties": {
 				"os": {"type": "string"},
 				"version": {"type": "string"},
-				"device": {"type": "string"}, 
-				"ip": { "type": "string"}
+				"device": {"type": "string"}
 			},
 			"additionalProperties": false
 		},
@@ -170,17 +160,10 @@
 			"description": "The unique identifier assocaited with the sending device",
 			"type": "string"
 		},
-		
-		"state": {
-			"description": "State of the sending device",
-			"$ref": "#/definitions/state"
-		},
-		
 		"info": {
 			"description": "Basic info about the sending device",
 			"$ref": "#/definitions/deviceInfo"
 		},
-		
 		"stats": {
 			"type": "array",
 			"items": {"$ref": "#/definitions/statsEntry"}
@@ -189,6 +172,6 @@
 		"apps": {
 			"type": "array",
 			"items": {"$ref": "#/definitions/app"}
-		} 
+		}
 	}
 }
