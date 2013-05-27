@@ -35,12 +35,14 @@ import edu.wpi.cs.peds.hmn.stats.apps.GlobalAppList;
  * The view of the app list shown to the user
  * 
  * @author Richard Brown, rpb111@wpi.edu
+ * @author Zhenhao Lei, zlei@wpi.edu
  * @author Austin Noto-Moniz, austinnoto@wpi.edu
  */
 public class AppStatViewerActivity extends ListActivity implements IObserver {
 	public class AppCollectorServiceConnection implements ServiceConnection {
 
-		public AppCollectorServiceConnection(IObservable observableService, IObserver componentToRegister) {
+		public AppCollectorServiceConnection(IObservable observableService,
+				IObserver componentToRegister) {
 			observer = componentToRegister;
 			observedService = observableService;
 		}
@@ -57,7 +59,7 @@ public class AppStatViewerActivity extends ListActivity implements IObserver {
 			observedService = null;
 		}
 	}
-	
+
 	private BaseAdapter adapter;
 	private IObserver observer;
 	private IObservable observedService;
@@ -66,85 +68,95 @@ public class AppStatViewerActivity extends ListActivity implements IObserver {
 	private AppCollectorServiceConnection appCollectorConnection;
 
 	@Override
-	public void onCreate(Bundle savedInstanceState)
-	{
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 	}
 
-	public void onStart(){
+	public void onStart() {
 		super.onStart();
 		setContentView(R.layout.activity_main);
-		
-//		Log.i(HmnLog.HMN_LOG_TAG,"!!!!!!!!!!!APPS GET STARTED!!!!!");
+
+		// Log.i(HmnLog.HMN_LOG_TAG,"!!!!!!!!!!!APPS GET STARTED!!!!!");
 		createSortingDropdown();
 		startAppCollector();
-		
+
 		adapter = new AppListAdapter(this, new ArrayList<Application>());
 		setListAdapter(adapter);
 	}
-	
+
 	/**
 	 * Initializes the drop down menu that allows the user to sort the list of
 	 * apps.
 	 */
-	public void createSortingDropdown()
-	{
-		final Spinner sortBySpinner = (Spinner)findViewById(R.id.sort_by_spinner);
-		final Spinner sortOrderSpinner = (Spinner)findViewById(R.id.sort_order_spinner);
-		
+	public void createSortingDropdown() {
+		final Spinner sortBySpinner = (Spinner) findViewById(R.id.sort_by_spinner);
+		final Spinner sortOrderSpinner = (Spinner) findViewById(R.id.sort_order_spinner);
+
 		// Initializes the drop down for selecting which field to sort by
-		ArrayAdapter<SortOrder> sortBySpinnerItemAdapter = new ArrayAdapter<SortOrder>(this, android.R.layout.simple_spinner_item, SortOrder.values());
-		sortBySpinnerItemAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		ArrayAdapter<SortOrder> sortBySpinnerItemAdapter = new ArrayAdapter<SortOrder>(
+				this, android.R.layout.simple_spinner_item, SortOrder.values());
+		sortBySpinnerItemAdapter
+				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		sortBySpinner.setAdapter(sortBySpinnerItemAdapter);
-		sortBySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()  {
-			@Override
-			public void onItemSelected(AdapterView<?> parent, View view, int pos, long id)
-			{
-				SortOrder sortBy = (SortOrder)parent.getItemAtPosition(pos);
-				String sortOrder = (String)sortOrderSpinner.getSelectedItem();
-				if (sortOrder.equals("Ascending"))
-					sortBy.sortAsc(GlobalAppList.getInstance().getDisplayedApps());
-				else
-					sortBy.sortDec(GlobalAppList.getInstance().getDisplayedApps());
-				adapter.notifyDataSetChanged();
-			}
+		sortBySpinner
+				.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+					@Override
+					public void onItemSelected(AdapterView<?> parent,
+							View view, int pos, long id) {
+						SortOrder sortBy = (SortOrder) parent
+								.getItemAtPosition(pos);
+						String sortOrder = (String) sortOrderSpinner
+								.getSelectedItem();
+						if (sortOrder.equals("Ascending"))
+							sortBy.sortAsc(GlobalAppList.getInstance()
+									.getDisplayedApps());
+						else
+							sortBy.sortDec(GlobalAppList.getInstance()
+									.getDisplayedApps());
+						adapter.notifyDataSetChanged();
+					}
 
-			@Override
-			public void onNothingSelected(AdapterView<?> parent)
-			{
-				
-			}
-		});
-		
-		ArrayAdapter<String> sortOrderSpinnerItemAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, new String[]{"Ascending","Descending"});
-		sortOrderSpinnerItemAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+					@Override
+					public void onNothingSelected(AdapterView<?> parent) {
+
+					}
+				});
+
+		ArrayAdapter<String> sortOrderSpinnerItemAdapter = new ArrayAdapter<String>(
+				this, android.R.layout.simple_spinner_item, new String[] {
+						"Ascending", "Descending" });
+		sortOrderSpinnerItemAdapter
+				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		sortOrderSpinner.setAdapter(sortOrderSpinnerItemAdapter);
-		sortOrderSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()  {
-			@Override
-			public void onItemSelected(AdapterView<?> parent, View view, int pos, long id)
-			{
-				SortOrder sortBy = (SortOrder)sortBySpinner.getSelectedItem();
-				String sortOrder = (String)parent.getItemAtPosition(pos);
-				if (sortOrder.equals("Ascending"))
-					sortBy.sortAsc(GlobalAppList.getInstance().getDisplayedApps());
-				else
-					sortBy.sortDec(GlobalAppList.getInstance().getDisplayedApps());
-				adapter.notifyDataSetChanged();
-			}
+		sortOrderSpinner
+				.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+					@Override
+					public void onItemSelected(AdapterView<?> parent,
+							View view, int pos, long id) {
+						SortOrder sortBy = (SortOrder) sortBySpinner
+								.getSelectedItem();
+						String sortOrder = (String) parent
+								.getItemAtPosition(pos);
+						if (sortOrder.equals("Ascending"))
+							sortBy.sortAsc(GlobalAppList.getInstance()
+									.getDisplayedApps());
+						else
+							sortBy.sortDec(GlobalAppList.getInstance()
+									.getDisplayedApps());
+						adapter.notifyDataSetChanged();
+					}
 
-			@Override
-			public void onNothingSelected(AdapterView<?> parent)
-			{
-				
-			}
-		});
+					@Override
+					public void onNothingSelected(AdapterView<?> parent) {
+
+					}
+				});
 	}
-	
-	public void startAppCollector()
-	{
+
+	public void startAppCollector() {
 		appCollector = new Intent(this, AppCollectorService.class);
 		appCollectorConnection = new AppCollectorServiceConnection(null, this);
-		
+
 		bindService(appCollector, appCollectorConnection, 0);
 	}
 
@@ -158,9 +170,10 @@ public class AppStatViewerActivity extends ListActivity implements IObserver {
 		if (id <= Integer.MAX_VALUE && id >= Integer.MIN_VALUE) {
 			int i = (int) id;
 			Application chosenApp = apps.get(i);
-			
+
 			// Sends the UID for lookup
-			Intent detailIntent = new Intent(this,ApplicationDetailViewActivity.class);
+			Intent detailIntent = new Intent(this,
+					ApplicationDetailViewActivity.class);
 			ByteArrayOutputStream bos = new ByteArrayOutputStream();
 			ObjectOutputStream oos;
 			try {
@@ -176,7 +189,7 @@ public class AppStatViewerActivity extends ListActivity implements IObserver {
 			}
 		}
 	}
-	
+
 	@Override
 	protected void onPause() {
 		super.onPause();
@@ -193,10 +206,9 @@ public class AppStatViewerActivity extends ListActivity implements IObserver {
 			observedService.addObserver(observer);
 		}
 	}
-	
+
 	@Override
-	protected void onDestroy()
-	{
+	protected void onDestroy() {
 		unbindService(appCollectorConnection);
 		super.onDestroy();
 	}
