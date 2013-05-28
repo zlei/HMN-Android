@@ -54,7 +54,7 @@ public class Application implements Serializable {
 
 	public Float userRating = 0.0f;
 	public Float dbRating = 0.0f;
-
+	public Float totalNetwork = 0.0f;
 	private long lastStateUpdateTime;
 
 	public Application(String name, String packageName, int uid,
@@ -132,7 +132,6 @@ public class Application implements Serializable {
 		NetworkStats newStats = totalStats.difference(cumulativeStats);
 		newStats.state = currentState;
 		cumulativeStats = totalStats;
-
 		NetUsageEntry newEntry = new NetUsageEntry(lastConnectionType, newStats);
 		netUsage.add(newEntry);
 
@@ -198,7 +197,11 @@ public class Application implements Serializable {
 	public Drawable getIcons() {
 		return icon;
 	}
-
+	
+	public float networkMonitorInfo(){
+		return netUsage.networkMonitorInfo();
+	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		Application app = (Application) obj;

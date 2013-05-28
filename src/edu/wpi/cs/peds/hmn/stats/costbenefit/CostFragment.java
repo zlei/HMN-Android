@@ -1,11 +1,14 @@
 package edu.wpi.cs.peds.hmn.stats.costbenefit;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import edu.wpi.cs.peds.hmn.app.R;
 import edu.wpi.cs.peds.hmn.stats.apps.Application;
@@ -25,6 +28,15 @@ public class CostFragment extends Fragment{
     	View view = inflater.inflate(R.layout.activity_costbenefit_costtab, container, false);
         TextView textview = (TextView) view.findViewById(R.id.costDetail);
         textview.setText(appDetails);
+
+        Button button = (Button) view.findViewById(R.id.networkMonitor);
+		button.setOnClickListener(new OnClickListener() {
+			public void onClick(View arg0) {
+				Intent intent = new Intent();
+				intent.setClass(getActivity(), CostGraphActivity.class);
+				getActivity().startActivity(intent);
+			}
+		});
         return view;
     }
  
