@@ -7,16 +7,19 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import edu.wpi.cs.peds.hmn.app.R;
+import edu.wpi.cs.peds.hmn.appdetailviewer.ApplicationDetailViewActivity;
  
 public class CostBenefitActivity extends FragmentActivity {
     ActionBar mActionBar;
     ViewPager mPager;
- 
+
+    int currentUid;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_costbenefit);
- 
+        currentUid = ApplicationDetailViewActivity.uid;
+
         /** Getting a reference to action bar of this activity */
         mActionBar = getActionBar();
  

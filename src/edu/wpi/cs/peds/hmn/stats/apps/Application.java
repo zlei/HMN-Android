@@ -15,6 +15,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import edu.wpi.cs.peds.hmn.appcollector.AppState;
 import edu.wpi.cs.peds.hmn.appcollector.NetDevice;
+import edu.wpi.cs.peds.hmn.stats.PowerStats;
 import edu.wpi.cs.peds.hmn.stats.costbenefit.StateChanges;
 import edu.wpi.cs.peds.hmn.stats.net.NetUsageEntry;
 import edu.wpi.cs.peds.hmn.stats.net.NetUsageList;
@@ -45,6 +46,7 @@ public class Application implements Serializable {
 
 	public NetUsageList netUsage;
 	public NetworkStats cumulativeStats;
+	public PowerStats powerStats;
 	public NetDevice lastConnectionType;
 	public AppStateMap appStateMap;
 	public AppState currentState = null;
@@ -64,6 +66,7 @@ public class Application implements Serializable {
 		this.icon = icon;
 		netUsage = new NetUsageList();
 		cumulativeStats = new NetworkStats();
+		powerStats = new PowerStats();
 		appStateMap = new AppStateMap();
 		stateChanges = new StateChanges();
 
@@ -86,6 +89,7 @@ public class Application implements Serializable {
 		updateState(appState);
 		updateNetworkUsage(context);
 		updateCostBenefit(context);
+		updatePowerStats(context);
 	}
 
 	/**
@@ -150,6 +154,10 @@ public class Application implements Serializable {
 		this.userRating = newRating;
 	}
 
+	public void updatePowerStats(Context context) {
+
+	}
+
 	/**
 	 * Tells the app to update its cost/benefit calculation. At the moment, this
 	 * method does nothing. The cost and benefit are randomly determined in the
@@ -171,6 +179,7 @@ public class Application implements Serializable {
 	public void resetStats() {
 		netUsage = new NetUsageList();
 		appStateMap = new AppStateMap();
+		powerStats = new PowerStats();
 	}
 
 	/**
@@ -208,11 +217,22 @@ public class Application implements Serializable {
 				appStateMap.detailedInfo()));
 		appStr.append(String.format("NETWORK USAGE\n%s\n\n",
 				netUsage.detailedInfo()));
+		appStr.append(String.format("Battery INFO\n%s\n\n",
+		powerStats.detailedInfo()));
+
 		if (!netUsage.isEmpty())
 			appStr.append(String.format("ENTRIES\n%s\n\n",
 					netUsage.entryListDetails()));
 
 		return appStr.toString();
+	}
+
+	public String costInfo() {
+		StringBuilder appCostStr = new StringBuilder();
+
+		appCostStr.append(String.format("NETWORK USAGE: %s\n", netUsage.costInfo()));
+		appCostStr.append(String.format("Battery INFO: %s\n", powerStats.costInfo()));
+		return appCostStr.toString();
 	}
 
 	public JSONObject toJSON() throws JSONException {

@@ -42,17 +42,17 @@ public class AppCollectorService extends Service implements IObservable {
 			return AppCollectorService.this;
 		}
 	}
-	
+
 	// Allows easier debugging by restricting the service from starting before
 	// you're ready
 	public static boolean startOnBoot = false;
-	
+
 	private final List<IObserver> observers = new ArrayList<IObserver>();
 	private final Handler handler = new Handler();
 	private ConnectivityManager connectivityManager = null;
 	private final IBinder binder = new MyBinder();
 	BroadcastReceiver receiver;
-	
+
 	/**
 	 * The data gathering task, which is set to run every 2 seconds.
 	 */
@@ -60,14 +60,15 @@ public class AppCollectorService extends Service implements IObservable {
 	private Runnable dataGatheringTask = new Runnable() {
 		public void run() {
 			Log.i(HmnLog.HMN_LOG_TAG, "Collecting data.");
-			
-			GlobalDataCollector.getInstance().gatherStats(getApplicationContext());
+
+			GlobalDataCollector.getInstance().gatherStats(
+					getApplicationContext());
 			notifyObservers();
 
 			handler.postDelayed(this, dataGatheringPeriod);
 		}
 	};
-	
+
 	/**
 	 * The data sending task, which is set to run every 30 seconds.
 	 */
@@ -75,23 +76,20 @@ public class AppCollectorService extends Service implements IObservable {
 	private Runnable dataSendingTask = new Runnable() {
 		public void run() {
 			Log.i(HmnLog.HMN_LOG_TAG, "Transmitting data.");
-			
+
 			JSONSender.post();
 
 			handler.postDelayed(this, dataSendingPeriod);
 		}
 	};
 
-	
 	@Override
-	public IBinder onBind(Intent intent)
-	{
+	public IBinder onBind(Intent intent) {
 		return binder;
 	}
 
 	@Override
-	public boolean onUnbind(Intent intent)
-	{
+	public boolean onUnbind(Intent intent) {
 		super.onUnbind(intent);
 		return true;
 	}
@@ -105,22 +103,26 @@ public class AppCollectorService extends Service implements IObservable {
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		
+
 		JSONSender.loadAndSendBuffer(this);
-		
-		ActivityManager activityManager = (ActivityManager)getSystemService(Activity.ACTIVITY_SERVICE);
+
+		ActivityManager activityManager = (ActivityManager) getSystemService(Activity.ACTIVITY_SERVICE);
 		GlobalAppList.init(getPackageManager(), activityManager);
-		
-		Log.i(HmnLog.HMN_LOG_TAG,"!!!!!!!!!!SERVICE GET STARTED!!!!!");
+
+		Log.i(HmnLog.HMN_LOG_TAG, "!!!!!!!!!!SERVICE GET STARTED!!!!!");
 		if (connectivityManager == null) {
-			connectivityManager = (ConnectivityManager) getApplicationContext().getSystemService(Context.CONNECTIVITY_SERVICE);
-			NetworkInfo activeNetwork = connectivityManager.getActiveNetworkInfo();
-			NetDevice lastConnectionType = NetDevice.determineNetworkConnection(activeNetwork);
+			connectivityManager = (ConnectivityManager) getApplicationContext()
+					.getSystemService(Context.CONNECTIVITY_SERVICE);
+			NetworkInfo activeNetwork = connectivityManager
+					.getActiveNetworkInfo();
+			NetDevice lastConnectionType = NetDevice
+					.determineNetworkConnection(activeNetwork);
 			for (Application app : GlobalAppList.getInstance().getAllApps())
 				app.lastConnectionType = lastConnectionType;
 		}
 		if (activityManager == null) {
-			activityManager = (ActivityManager) getApplicationContext().getSystemService(Context.ACTIVITY_SERVICE);
+			activityManager = (ActivityManager) getApplicationContext()
+					.getSystemService(Context.ACTIVITY_SERVICE);
 		}
 
 		Log.d(HmnLog.HMN_LOG_TAG, "App Collector Service created.");
@@ -131,7 +133,8 @@ public class AppCollectorService extends Service implements IObservable {
 		registerReceiver(receiver, new IntentFilter(Intent.ACTION_SCREEN_ON));
 		registerReceiver(receiver, new IntentFilter(Intent.ACTION_SCREEN_OFF));
 		registerReceiver(receiver, new IntentFilter(Intent.ACTION_SHUTDOWN));
-		registerReceiver(receiver, new IntentFilter(android.net.ConnectivityManager.CONNECTIVITY_ACTION));
+		registerReceiver(receiver, new IntentFilter(
+				android.net.ConnectivityManager.CONNECTIVITY_ACTION));
 		// TODO register receiver on package install, package change in
 		// data/cache, package replaced...there are many
 
@@ -139,7 +142,7 @@ public class AppCollectorService extends Service implements IObservable {
 		handler.postDelayed(dataGatheringTask, dataGatheringPeriod);
 		handler.postDelayed(dataSendingTask, dataSendingPeriod);
 	}
-	
+
 	/**
 	 * Ensures the app completely stops by stopping its recurring tasks and no
 	 * longer receiving broadcast events.
@@ -147,10 +150,10 @@ public class AppCollectorService extends Service implements IObservable {
 	@Override
 	public void onDestroy() {
 		JSONSender.stashBuffer(this);
-		
+
 		handler.removeCallbacks(dataGatheringTask);
 		handler.removeCallbacks(dataSendingTask);
-		
+
 		unregisterReceiver(receiver);
 	}
 
@@ -167,7 +170,7 @@ public class AppCollectorService extends Service implements IObservable {
 				if (action.equals(Intent.ACTION_SCREEN_ON)) {
 					// Begin periodic sampling, next sample @
 					// networkSamplingRateMilli
-					handler.postDelayed(dataGatheringTask,dataGatheringPeriod);
+					handler.postDelayed(dataGatheringTask, dataGatheringPeriod);
 					handler.postDelayed(dataSendingTask, dataSendingPeriod);
 				} else if (action.equals(Intent.ACTION_SCREEN_OFF)) {
 					// Unregister the handler events
@@ -180,14 +183,13 @@ public class AppCollectorService extends Service implements IObservable {
 
 		return START_STICKY;
 	}
-	
-	
+
 	public void addObserver(IObserver O) {
 		if (!observers.contains(O)) {
 			observers.add(O);
 		}
 	}
-	
+
 	public int countObservers() {
 		return observers.size();
 	}
@@ -201,7 +203,7 @@ public class AppCollectorService extends Service implements IObservable {
 	public void deleteObservers() {
 		observers.clear();
 	}
-	
+
 	public void notifyObservers() {
 		for (IObserver observer : observers) {
 			observer.update(this, null);

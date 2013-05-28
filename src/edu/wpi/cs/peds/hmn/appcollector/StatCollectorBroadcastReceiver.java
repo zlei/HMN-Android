@@ -27,7 +27,8 @@ public class StatCollectorBroadcastReceiver extends BroadcastReceiver {
 	 */
 	@Override
 	public void onReceive(Context context, Intent intent) {
-		Intent intentToSendService = new Intent(context, AppCollectorService.class);
+		Intent intentToSendService = new Intent(context,
+				AppCollectorService.class);
 		String action = intent.getAction();
 		if (action.equals(Intent.ACTION_SCREEN_ON)) {
 			Log.i(HmnLog.HMN_LOG_TAG, "Screen turned on.");
@@ -51,8 +52,11 @@ public class StatCollectorBroadcastReceiver extends BroadcastReceiver {
 			Log.i(HmnLog.HMN_LOG_TAG, "Change in network.");
 			// Collect Data Usage
 			intentToSendService.putExtra("action", action);
-			ConnectivityManager connectivityManager = (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
-			intentToSendService.putExtra(ConnectivityManager.EXTRA_OTHER_NETWORK_INFO,connectivityManager.getActiveNetworkInfo());
+			ConnectivityManager connectivityManager = (ConnectivityManager) context
+					.getSystemService(Context.CONNECTIVITY_SERVICE);
+			intentToSendService.putExtra(
+					ConnectivityManager.EXTRA_OTHER_NETWORK_INFO,
+					connectivityManager.getActiveNetworkInfo());
 			context.startService(intentToSendService);
 		}
 

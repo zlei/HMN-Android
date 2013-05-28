@@ -18,8 +18,8 @@
     <string name="extraInfo">Extra Information About App."</string>
     <string name="dbRatingStr">Overall Reviews:</string>
     <string name="userRatingStr">Your Review:</string>
-    <string name="benefitRatingStr">Overal Reviews:</string>
-    <string name="benefitPopularityStr">Overal Popularity:</string>
+    <string name="benefitRatingStr">Overall Reviews:</string>
+    <string name="benefitPopularityStr">Overall Popularity:</string>
     <string name="hmnLogo">HMN Logo"</string>
     <string name="updated">Last updated:</string>
     <string name="lost_connection">Lost connection.</string>
