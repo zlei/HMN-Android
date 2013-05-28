@@ -6,22 +6,17 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp" >
 
-    <TextView
-        android:id="@+id/lblapp_detail_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
     <RelativeLayout
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" >
 
         <TextView
             android:id="@+id/benefit_RatingTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
             android:text="@string/benefitRatingStr"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -33,13 +28,25 @@
             android:layout_alignParentRight="true"
             android:isIndicator="true"
             android:numStars="5" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/benefit_RatingDetail"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" >
 
         <TextView
             android:id="@+id/benefit_PopularityTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_below="@+id/benefit_RatingTitle"
             android:text="@string/benefitPopularityStr"
             android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -49,9 +56,75 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/benefit_Rating"
             android:isIndicator="true"
             android:numStars="5" />
     </RelativeLayout>
+
+    <TextView
+        android:id="@+id/benefit_PopularityDetail"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" >
+
+        <TextView
+            android:id="@+id/benefit_LaunchCountTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="@string/benefitLaunchCountStr"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <RatingBar
+            android:id="@+id/benefit_LaunchCount"
+            style="@style/dbRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:isIndicator="true"
+            android:numStars="5" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/benefit_LaunchCountDetail"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" >
+
+        <TextView
+            android:id="@+id/benefit_UseTimeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:text="@string/benefitUseTimeStr"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <RatingBar
+            android:id="@+id/benefit_UseTime"
+            style="@style/dbRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:isIndicator="true"
+            android:numStars="5" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/benefit_UseTimeDetail"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
 </LinearLayout>

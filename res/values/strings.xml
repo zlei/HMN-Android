@@ -19,7 +19,9 @@
     <string name="dbRatingStr">Overall Reviews:</string>
     <string name="userRatingStr">Your Review:</string>
     <string name="benefitRatingStr">Overall Reviews:</string>
-    <string name="benefitPopularityStr">Overall Popularity:</string>
+    <string name="benefitPopularityStr">Popularity:</string>
+    <string name="benefitLaunchCountStr">Launch Count:</string>
+    <string name="benefitUseTimeStr">Used Time:</string>
     <string name="hmnLogo">HMN Logo"</string>
     <string name="updated">Last updated:</string>
     <string name="lost_connection">Lost connection.</string>

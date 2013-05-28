@@ -32,7 +32,7 @@ public class PowerStats {
 	private boolean isCharging;
 	private ChargingMethod chargingMethod;
 	private boolean screenOn;
-	private float batteryPercentage;
+	private static float batteryPercentage;
 
 	/**
 	 * Ensures the only way a PowerStats object can be made is through
@@ -60,6 +60,7 @@ public class PowerStats {
 		if (powerStats.isCharging)
 			powerStats.chargingMethod = getChargingMethod(batteryStatus);
 		powerStats.batteryPercentage = getBatteryPercentage(batteryStatus);
+		batteryPercentage = getBatteryPercentage(batteryStatus);
 		return powerStats;
 	}
 
@@ -137,7 +138,7 @@ public class PowerStats {
 		if (isCharging)
 			powerStatsStr.append(String.format("charging method: %s\n",
 					chargingMethod));
-		powerStatsStr.append(String.format("remaining battery: %f\n",
+		powerStatsStr.append(String.format("remaining battery: %.0f%%\n",
 				(batteryPercentage * 100)));
 
 		return powerStatsStr.toString();
@@ -148,7 +149,7 @@ public class PowerStats {
 	 */
 	public String costInfo() {
 		StringBuilder powerCostStatsStr = new StringBuilder();
-		powerCostStatsStr.append(String.format("\nRemaining battery: %.2f%%\n",
+		powerCostStatsStr.append(String.format("\nRemaining battery: %.0f%%\n",
 				batteryPercentage));
 		return powerCostStatsStr.toString();
 	}
