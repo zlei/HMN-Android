@@ -220,8 +220,8 @@ public class Application implements Serializable {
 				appStateMap.detailedInfo()));
 		appStr.append(String.format("NETWORK USAGE\n%s\n\n",
 				netUsage.detailedInfo()));
-		appStr.append(String.format("Battery INFO\n%s\n\n",
-		powerStats.detailedInfo()));
+//		appStr.append(String.format("Battery INFO\n%s\n\n",
+//		powerStats.detailedInfo()));
 
 		if (!netUsage.isEmpty())
 			appStr.append(String.format("ENTRIES\n%s\n\n",

@@ -207,10 +207,15 @@ public class AppStatViewerActivity extends ListActivity implements IObserver {
 		}
 	}
 
+	protected void onStop(){
+		super.onStop();
+		unbindService(appCollectorConnection);
+	}
+
 	@Override
 	protected void onDestroy() {
-		unbindService(appCollectorConnection);
 		super.onDestroy();
+//		unbindService(appCollectorConnection);
 	}
 
 	public void update(IObservable O, Object arg) {

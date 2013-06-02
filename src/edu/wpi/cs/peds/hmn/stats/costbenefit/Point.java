@@ -1,10 +1,14 @@
 package edu.wpi.cs.peds.hmn.stats.costbenefit;
 
+/**
+ * @author Zhenhao Lei, zlei@wpi.edu
+ */
+
 public class Point{
 	private int x;
-	private int y;
+	private float y;
 	
-	public Point(int x, int y)
+	public Point(int x, float y)
 	{
 		this.x = x;
 		this.y = y;
@@ -12,7 +16,7 @@ public class Point{
 	public int getX(){
 		return x;
 	}
-	public int getY(){
+	public float getY(){
 		return y;
 	}
 }

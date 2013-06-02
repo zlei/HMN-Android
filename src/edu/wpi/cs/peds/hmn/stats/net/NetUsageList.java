@@ -30,7 +30,7 @@ public class NetUsageList extends LinkedList<NetUsageEntry> {
 
 	private final long BASE = 1024, KB = BASE, MB = KB * BASE, GB = MB * BASE;
 	private final DecimalFormat df = new DecimalFormat("#.##");
-	private static float totalBytes;
+	private float totalBytes;
 	// Interface implementation for getting a NetUsageEntry's uploaded bytes
 	private final GetBytes getUploadedBytes = new GetBytes() {
 		private static final long serialVersionUID = -3706296390701186785L;
@@ -47,7 +47,6 @@ public class NetUsageList extends LinkedList<NetUsageEntry> {
 
 		@Override
 		public double getBytes(NetUsageEntry entry) {
-			totalBytes = entry.receivedBytes;
 			return entry.receivedBytes;
 		}
 	};
@@ -122,9 +121,10 @@ public class NetUsageList extends LinkedList<NetUsageEntry> {
 		for (NetUsageEntry entry : this)
 			if (stateList.isEmpty() || stateList.contains(entry.state))
 				bytes += getBytes.getBytes(entry);
+		totalBytes = (float)bytes;
 		return formatBytes(bytes);
 	}
-
+	
 	public String getShortString() {
 		return String.format("Total Up: %s\nTotal Down: %s",
 				getPrettyBytes(getUploadedBytes),

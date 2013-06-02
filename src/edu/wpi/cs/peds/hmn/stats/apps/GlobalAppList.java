@@ -15,8 +15,10 @@ import org.json.JSONException;
 
 import android.app.ActivityManager;
 import android.content.pm.PackageManager;
+import android.util.Log;
 import edu.wpi.cs.peds.hmn.app.SleekAndroidActivity;
 import edu.wpi.cs.peds.hmn.appcollector.AppState;
+import edu.wpi.cs.peds.hmn.log.HmnLog;
 
 /**
  * Manages the list of apps installed on the phone. Provides the master list of
@@ -67,7 +69,28 @@ public class GlobalAppList
 			"com.android.providers.applications",	// Search Applications
 			"com.android.providers.settings",		// Settings Storage
 			"com.android.systemui",					// System UI
-			"com.android.providers.userdictionary"	// User Dictionary
+			"com.android.providers.userdictionary",	// User Dictionary
+			"android",
+			"com.android.certinstaller",
+			"com.android.contacts",
+			"com.android.dreams.basic",
+			"com.android.facelock",
+			"com.android.htmlviewer",
+			"com.android.inputdevices",
+			"com.android.mms",
+			"com.android.packageinstaller",
+			"com.android.vpndialogs",
+			"com.google.android.backup",
+			"com.google.android.configupdater",
+			"com.google.android.exchange",
+			"com.google.android.gsf",
+			"com.google.android.gsf.login",
+			"com.google.android.location",
+			"com.google.android.onetimeinitializer",
+			"com.google.android.partnersetup",
+			"com.google.android.syncadapters.bookmarks",
+			"com.google.android.tts",
+			"com.tf.thinkdroid.sg"
 	);
 	private static List<Application> systemApps;
 	
@@ -94,6 +117,7 @@ public class GlobalAppList
 		this.activityManager = activityManager;
 		allApps = AppCollector.getAllApps(packageManager);
 		systemApps = findSystemApps();
+		Log.i(HmnLog.HMN_LOG_TAG, "INITIATE APPS!!!!!!!!!!!");
         if(!SleekAndroidActivity.hideSystemApp){
 		allApps.removeAll(systemApps);
         }

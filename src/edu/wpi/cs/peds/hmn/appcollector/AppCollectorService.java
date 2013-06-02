@@ -33,7 +33,7 @@ import edu.wpi.cs.peds.hmn.stats.apps.GlobalAppList;
 /**
  * @author Austin Noto-Moniz, austinnoto@wpi.edu
  * @author Richard Brown, rpb111@wpi.edu
- * 
+ * @author Zhenhao Lei, zlei@wpi.edu
  */
 public class AppCollectorService extends Service implements IObservable {
 
@@ -72,7 +72,7 @@ public class AppCollectorService extends Service implements IObservable {
 	/**
 	 * The data sending task, which is set to run every 30 seconds.
 	 */
-	private final long dataSendingPeriod = 5000;
+	private final long dataSendingPeriod = 30000;
 	private Runnable dataSendingTask = new Runnable() {
 		public void run() {
 			Log.i(HmnLog.HMN_LOG_TAG, "Transmitting data.");
@@ -109,7 +109,7 @@ public class AppCollectorService extends Service implements IObservable {
 		ActivityManager activityManager = (ActivityManager) getSystemService(Activity.ACTIVITY_SERVICE);
 		GlobalAppList.init(getPackageManager(), activityManager);
 
-		Log.i(HmnLog.HMN_LOG_TAG, "!!!!!!!!!!SERVICE GET STARTED!!!!!");
+		// Log.i(HmnLog.HMN_LOG_TAG, "!!!!!!!!!!SERVICE GET STARTED!!!!!");
 		if (connectivityManager == null) {
 			connectivityManager = (ConnectivityManager) getApplicationContext()
 					.getSystemService(Context.CONNECTIVITY_SERVICE);

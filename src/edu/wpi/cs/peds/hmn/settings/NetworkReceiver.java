@@ -9,6 +9,13 @@ import android.widget.Toast;
 import edu.wpi.cs.peds.hmn.app.R;
 import edu.wpi.cs.peds.hmn.app.SleekAndroidActivity;
 
+
+/**
+* 
+* @author Zhenhao Lei, zlei@wpi.edu 
+* 
+*/
+
 public class NetworkReceiver extends BroadcastReceiver {
 
 	public static final String WIFI = "Wi-Fi";
@@ -28,19 +35,19 @@ public class NetworkReceiver extends BroadcastReceiver {
                 // If device has its Wi-Fi connection, sets refreshDisplay
                 // to true. This causes the display to be refreshed when the user
                 // returns to the app.
-                SleekAndroidActivity.refreshDisplay = true;
+//                SleekAndroidActivity.refreshDisplay = true;
                 Toast.makeText(context, R.string.wifi_connected, Toast.LENGTH_SHORT).show();
 
                 // If the setting is ANY network and there is a network connection
                 // (which by process of elimination would be mobile), sets refreshDisplay to true.
             } else if (ANY.equals(SleekAndroidActivity.sPref) && networkInfo != null) {
-                SleekAndroidActivity.refreshDisplay = true;
+//                SleekAndroidActivity.refreshDisplay = true;
                 // Otherwise, the app can't download content--either because there is no network
                 // connection (mobile or Wi-Fi), or because the pref setting is WIFI, and there
                 // is no Wi-Fi connection.
                 // Sets refreshDisplay to false.
             } else {
-                SleekAndroidActivity.refreshDisplay = false;
+ //               SleekAndroidActivity.refreshDisplay = false;
                 Toast.makeText(context, R.string.lost_connection, Toast.LENGTH_SHORT).show();
             }
         }

@@ -6,6 +6,10 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import edu.wpi.cs.peds.hmn.app.R;
 
+/**
+ * @author Zhenhao Lei, zlei@wpi.edu
+ */
+
 public class CostGraphActivity extends FragmentActivity {
 	private static GraphicalView view;
 	private LineGraph line = new LineGraph();
@@ -18,14 +22,18 @@ public class CostGraphActivity extends FragmentActivity {
 
 		thread = new Thread() {
 			public void run() {
-				for (int i = 0; i < 15; i++) {
+				for (int i = 0; i < 60; i++) {
 					try {
 						Thread.sleep(2000);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
-					Point p = MockData.getDataFromReceiver(i);
-					line.addNewPoints(p);
+					Point p1 = LiveData.getTotalData(i);
+					line.addNewTotalPoints(p1);
+					Point p2 = LiveData.getUploadData(i);
+					line.addNewUploadPoints(p2);
+					Point p3 = LiveData.getDownloadData(i);
+					line.addNewDownloadPoints(p3);
 					view.repaint();
 				}
 			}

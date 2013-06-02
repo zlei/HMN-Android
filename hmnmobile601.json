@@ -128,32 +128,20 @@
 			"required": ["name"],
 			"properties": {
 				"name": {"type": "string"},
-				
-				"bundleId": {
-					"description": "App Store id corresponding to the app's name",
-					"type": "string"
-				},
-				
-				"rating": {
-					"description": "The user's rating of this app. This should be a number between 0 and 5.",
-					"type": "number"
-				},
-				
 				"states": {
 					"type": "array", 
 					"items": { 
 						"type": "object",
 						"properties": {
 							"timestamp": {"description": "The time this data was collected, in miliseconds from epoch", "type": "number"},
-							"currentState": {"enum": ["active", "foreground", "background", "cached", "running", "notrunning"]},
-							"stateTime": {
-								"description": "The amount of time spent in each app state",
-								"$ref": "#/definitions/stateTime"
-							}
+							"currentState": {"enum": ["active", "foreground", "background", "cached", "running", "notrunning"]}
 						}
 					}
 				},
-				
+				"stateTime": {
+						"description": "The amount of time spent in each app state",
+						"$ref": "#/definitions/stateTime"
+				},
 				"network": {
 					"type": "array",
 					"items": {
@@ -161,13 +149,16 @@
 						"$ref": "#/definitions/networkEntry"
 					}
 				},
-				
 				"logs": {
 					"type": "array",
 					"items": {
 						"description": "A message that was in the iOS system log file, concerning this app",
 						"$ref": "#/definitions/iOSLogEntry"
 					}
+				},
+				"rating": {
+					"description": "The user's rating of this app. This should be a number between 0 and 5.",
+					"type": "number"
 				}
 			},
 			"additionalProperties": false

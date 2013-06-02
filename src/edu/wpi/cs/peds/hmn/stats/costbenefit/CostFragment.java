@@ -14,6 +14,10 @@ import edu.wpi.cs.peds.hmn.app.R;
 import edu.wpi.cs.peds.hmn.stats.apps.Application;
 import edu.wpi.cs.peds.hmn.stats.apps.GlobalAppList;
 
+/**
+ * @author Zhenhao Lei, zlei@wpi.edu
+ */
+
 public class CostFragment extends Fragment{
 
 	public void onAttach(Activity CostBenefitActivity){

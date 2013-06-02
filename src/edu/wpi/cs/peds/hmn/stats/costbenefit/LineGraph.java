@@ -10,27 +10,66 @@ import org.achartengine.renderer.XYSeriesRenderer;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Paint.Align;
+
+/**
+ * 
+ * @author Zhenhao Lei, zlei@wpi.edu
+ * 
+ */
 
 public class LineGraph {
 	private GraphicalView view;
-	private TimeSeries dataset = new TimeSeries("line1");
+	private TimeSeries totalset = new TimeSeries("Total");
+	private TimeSeries uploadset = new TimeSeries("Upload");
+	private TimeSeries downloadset = new TimeSeries("Download");
+
 	private XYMultipleSeriesDataset mDataset = new XYMultipleSeriesDataset();
 
-	private XYSeriesRenderer renderer = new XYSeriesRenderer();
+	private XYSeriesRenderer totalrenderer = new XYSeriesRenderer();
+	private XYSeriesRenderer uploadrenderer = new XYSeriesRenderer();
+	private XYSeriesRenderer downloadrenderer = new XYSeriesRenderer();
+
 	private XYMultipleSeriesRenderer mRenderer = new XYMultipleSeriesRenderer();
 
 	public LineGraph() {
-		mDataset.addSeries(dataset);
-	
-		renderer.setColor(Color.BLACK);
-		renderer.setPointStyle(PointStyle.DIAMOND);
-		renderer.setFillPoints(true);
-		
+		mDataset.addSeries(totalset);
+		mDataset.addSeries(uploadset);
+		mDataset.addSeries(downloadset);
+
+		totalrenderer.setColor(Color.WHITE);
+		totalrenderer.setPointStyle(PointStyle.DIAMOND);
+		totalrenderer.setFillPoints(true);
+		totalrenderer.setFillBelowLine(true);
+		totalrenderer.setFillBelowLineColor(Color.argb(64, 255, 255, 255));
+
+		uploadrenderer.setColor(Color.rgb(137, 201, 151));
+		uploadrenderer.setPointStyle(PointStyle.CIRCLE);
+		uploadrenderer.setFillPoints(true);
+		uploadrenderer.setFillBelowLine(true);
+		uploadrenderer.setFillBelowLineColor(Color.argb(64, 137, 201, 151));
+
+		downloadrenderer.setColor(Color.rgb(0, 86, 31));
+		downloadrenderer.setPointStyle(PointStyle.SQUARE);
+		downloadrenderer.setFillPoints(true);
+		downloadrenderer.setFillBelowLine(true);
+		downloadrenderer.setFillBelowLineColor(Color.argb(64, 0, 86, 31));
+
 		mRenderer.setZoomButtonsVisible(true);
-		mRenderer.setXTitle("Time");
-		mRenderer.setYTitle("Network Usage");
-		
-		mRenderer.addSeriesRenderer(renderer);
+		mRenderer.setApplyBackgroundColor(true);
+		mRenderer.setBackgroundColor(Color.BLACK);
+//		mRenderer.setXTitle("Time (S)");
+		mRenderer.setYTitle("Network Usage (KB)");
+		mRenderer.setLegendTextSize(25);
+		mRenderer.setLabelsTextSize(25);
+		mRenderer.setAxisTitleTextSize(25);
+		mRenderer.setYLabelsAlign(Align.LEFT);
+//		mRenderer.setFitLegend(true);
+		// mRenderer.setLegendHeight(80);
+
+		mRenderer.addSeriesRenderer(totalrenderer);
+		mRenderer.addSeriesRenderer(uploadrenderer);
+		mRenderer.addSeriesRenderer(downloadrenderer);
 	}
 
 	public GraphicalView getView(Context context) {
@@ -38,7 +77,15 @@ public class LineGraph {
 		return view;
 	}
 
-	public void addNewPoints(Point p) {
-		dataset.add(p.getX(), p.getY());
+	public void addNewTotalPoints(Point p) {
+		totalset.add(p.getX(), p.getY());
+	}
+
+	public void addNewUploadPoints(Point p) {
+		uploadset.add(p.getX(), p.getY());
+	}
+
+	public void addNewDownloadPoints(Point p) {
+		downloadset.add(p.getX(), p.getY());
 	}
 }

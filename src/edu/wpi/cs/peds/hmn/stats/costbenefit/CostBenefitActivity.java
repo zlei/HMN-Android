@@ -8,6 +8,10 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import edu.wpi.cs.peds.hmn.app.R;
 import edu.wpi.cs.peds.hmn.appdetailviewer.ApplicationDetailViewActivity;
+
+/**
+ * @author Zhenhao Lei, zlei@wpi.edu
+ */
  
 public class CostBenefitActivity extends FragmentActivity {
     ActionBar mActionBar;

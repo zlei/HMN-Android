@@ -16,12 +16,14 @@
     <string name="sort_by_label_text">Sort by: </string>
     <string name="sort_order_label_text">Sort order: </string>
     <string name="extraInfo">Extra Information About App."</string>
-    <string name="dbRatingStr">Overall Reviews:</string>
-    <string name="userRatingStr">Your Review:</string>
-    <string name="benefitRatingStr">Overall Reviews:</string>
+    <string name="dbRatingStr">Overall Rating:</string>
+    <string name="userRatingStr">Your Rating:</string>
+    <string name="benefitRatingStr">Overall Rating:</string>
     <string name="benefitPopularityStr">Popularity:</string>
     <string name="benefitLaunchCountStr">Launch Count:</string>
     <string name="benefitUseTimeStr">Used Time:</string>
+    <string name="myBenefit">My Benefit</string>
+    <string name="overallBenefit">Overall Benefit</string>
     <string name="hmnLogo">HMN Logo"</string>
     <string name="updated">Last updated:</string>
     <string name="lost_connection">Lost connection.</string>

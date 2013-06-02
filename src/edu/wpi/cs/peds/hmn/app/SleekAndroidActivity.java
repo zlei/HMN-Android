@@ -13,6 +13,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -21,6 +22,7 @@ import android.widget.Button;
 import edu.wpi.cs.peds.hmn.appcollector.AppCollectorService;
 import edu.wpi.cs.peds.hmn.appcollector.AppState;
 import edu.wpi.cs.peds.hmn.appstatviewer.AppStatViewerActivity;
+import edu.wpi.cs.peds.hmn.log.HmnLog;
 import edu.wpi.cs.peds.hmn.settings.NetworkReceiver;
 import edu.wpi.cs.peds.hmn.settings.SettingsActivity;
 import edu.wpi.cs.peds.hmn.stats.apps.GlobalAppList;
@@ -47,7 +49,7 @@ public class SleekAndroidActivity extends Activity {
 	// Whether there is a mobile connection.
 	// private static boolean mobileConnected = false;
 	// Whether the display should be refreshed.
-	public static boolean refreshDisplay = true;
+	public static boolean refreshDisplay = false;
 	// Whether hide the system apps
 	public static boolean hideSystemApp = true;
 	// The user's current network preference setting.
@@ -72,7 +74,11 @@ public class SleekAndroidActivity extends Activity {
 		// Log.i(HmnLog.HMN_LOG_TAG,"GET STARTED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		updateConnectedFlags();
 		updateSettingStatus();
-		// Log.i(HmnLog.HMN_LOG_TAG,"HIDE SYSTEM!!!!!!!!!!!" + hideSystemApp);
+
+		Log.i(HmnLog.HMN_LOG_TAG,"Display!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + refreshDisplay);
+		if (refreshDisplay)
+			stopService(appCollector);
+		refreshDisplay = false;
 		initButtons();
 		appCollector = new Intent(this, AppCollectorService.class);
 		startService(appCollector);
@@ -110,8 +116,8 @@ public class SleekAndroidActivity extends Activity {
 		button = (Button) findViewById(buttonID);
 		button.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				GlobalAppList.getInstance().setDisplayState(appState);
 
+				GlobalAppList.getInstance().setDisplayState(appState);
 				Intent appStatViewerIntent = new Intent(
 						SleekAndroidActivity.this, AppStatViewerActivity.class);
 				startActivity(appStatViewerIntent);
@@ -164,10 +170,11 @@ public class SleekAndroidActivity extends Activity {
 
 	@Override
 	protected void onDestroy() {
-		if (!AppCollectorService.startOnBoot)
-			stopService(appCollector);
-
 		super.onDestroy();
+
+//		if (!AppCollectorService.startOnBoot)
+		stopService(appCollector);
+
 		if (receiver != null) {
 			this.unregisterReceiver(receiver);
 		}

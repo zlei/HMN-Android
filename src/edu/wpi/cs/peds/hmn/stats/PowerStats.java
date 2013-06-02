@@ -139,7 +139,7 @@ public class PowerStats {
 			powerStatsStr.append(String.format("charging method: %s\n",
 					chargingMethod));
 		powerStatsStr.append(String.format("remaining battery: %.0f%%\n",
-				(batteryPercentage * 100)));
+				batteryPercentage));
 
 		return powerStatsStr.toString();
 	}

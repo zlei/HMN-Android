@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import edu.wpi.cs.peds.hmn.app.R;
 
-/*
+/**
  * @author Zhenhao Lei, zlei@wpi.edu
  */
 
@@ -46,7 +46,7 @@ public class BenefitFragment extends Fragment{
     
     public String reviewInfo() {
 		StringBuilder appCostStr = new StringBuilder();
-		appCostStr.append(String.format("Overall review: 4.2/5"));
+		appCostStr.append(String.format("Overall Rating: 4.2/5"));
 		return appCostStr.toString();
 	}
      public String popularityInfo() {
