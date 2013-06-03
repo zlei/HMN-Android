@@ -13,7 +13,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -22,7 +21,6 @@ import android.widget.Button;
 import edu.wpi.cs.peds.hmn.appcollector.AppCollectorService;
 import edu.wpi.cs.peds.hmn.appcollector.AppState;
 import edu.wpi.cs.peds.hmn.appstatviewer.AppStatViewerActivity;
-import edu.wpi.cs.peds.hmn.log.HmnLog;
 import edu.wpi.cs.peds.hmn.settings.NetworkReceiver;
 import edu.wpi.cs.peds.hmn.settings.SettingsActivity;
 import edu.wpi.cs.peds.hmn.stats.apps.GlobalAppList;
@@ -75,7 +73,8 @@ public class SleekAndroidActivity extends Activity {
 		updateConnectedFlags();
 		updateSettingStatus();
 
-		Log.i(HmnLog.HMN_LOG_TAG,"Display!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + refreshDisplay);
+//		Log.i(HmnLog.HMN_LOG_TAG, "Display!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+//				+ refreshDisplay);
 		if (refreshDisplay)
 			stopService(appCollector);
 		refreshDisplay = false;
@@ -127,7 +126,7 @@ public class SleekAndroidActivity extends Activity {
 
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.activity_app_class, menu);
+		inflater.inflate(R.menu.menu_settings, menu);
 		return true;
 	}
 
@@ -168,11 +167,24 @@ public class SleekAndroidActivity extends Activity {
 		}
 	}
 
+	protected void onPause() {
+		super.onPause();
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+	}
+
+	protected void onStop() {
+		super.onStop();
+	}
+
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
 
-//		if (!AppCollectorService.startOnBoot)
+		// if (!AppCollectorService.startOnBoot)
 		stopService(appCollector);
 
 		if (receiver != null) {

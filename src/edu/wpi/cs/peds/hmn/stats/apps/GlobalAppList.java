@@ -15,10 +15,8 @@ import org.json.JSONException;
 
 import android.app.ActivityManager;
 import android.content.pm.PackageManager;
-import android.util.Log;
 import edu.wpi.cs.peds.hmn.app.SleekAndroidActivity;
 import edu.wpi.cs.peds.hmn.appcollector.AppState;
-import edu.wpi.cs.peds.hmn.log.HmnLog;
 
 /**
  * Manages the list of apps installed on the phone. Provides the master list of
@@ -117,7 +115,7 @@ public class GlobalAppList
 		this.activityManager = activityManager;
 		allApps = AppCollector.getAllApps(packageManager);
 		systemApps = findSystemApps();
-		Log.i(HmnLog.HMN_LOG_TAG, "INITIATE APPS!!!!!!!!!!!");
+//		Log.i(HmnLog.HMN_LOG_TAG, "INITIATE APPS!!!!!!!!!!!");
         if(!SleekAndroidActivity.hideSystemApp){
 		allApps.removeAll(systemApps);
         }

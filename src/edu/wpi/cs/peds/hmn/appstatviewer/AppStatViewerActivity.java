@@ -66,7 +66,7 @@ public class AppStatViewerActivity extends ListActivity implements IObserver {
 	private List<Application> apps;
 	private Intent appCollector;
 	private AppCollectorServiceConnection appCollectorConnection;
-
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -79,7 +79,6 @@ public class AppStatViewerActivity extends ListActivity implements IObserver {
 		// Log.i(HmnLog.HMN_LOG_TAG,"!!!!!!!!!!!APPS GET STARTED!!!!!");
 		createSortingDropdown();
 		startAppCollector();
-
 		adapter = new AppListAdapter(this, new ArrayList<Application>());
 		setListAdapter(adapter);
 	}
@@ -190,6 +189,24 @@ public class AppStatViewerActivity extends ListActivity implements IObserver {
 		}
 	}
 
+/*	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.activity_app_list, menu);
+		return true;
+	}
+
+	// Handles the user's menu selection.
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.refresh:
+			refresh = true;
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+	}
+*/
 	@Override
 	protected void onPause() {
 		super.onPause();
@@ -212,6 +229,7 @@ public class AppStatViewerActivity extends ListActivity implements IObserver {
 		unbindService(appCollectorConnection);
 	}
 
+	
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();

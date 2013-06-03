@@ -12,7 +12,7 @@ import edu.wpi.cs.peds.hmn.app.R;
  * @author Zhenhao Lei, zlei@wpi.edu
  */
 
-public class BenefitFragment extends Fragment{
+public class OverallBenefitFragment extends Fragment{
 
 	int aLaunchCount = 0;
 	int popular = 12000;
@@ -26,7 +26,7 @@ public class BenefitFragment extends Fragment{
     	String PopularityDetail = popularityInfo();
     	String LaunchCountDetail = launchCountInfo();
     	String UseTimeDetail = useTimeInfo();
-    	View view = inflater.inflate(R.layout.activity_costbenefit_benefittab, container, false);
+    	View view = inflater.inflate(R.layout.activity_costbenefit_overallbenefittab, container, false);
 //		appCount();
         TextView Rview = (TextView) view.findViewById(R.id.benefit_RatingDetail);
         TextView Pview = (TextView) view.findViewById(R.id.benefit_PopularityDetail);

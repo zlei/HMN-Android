@@ -52,4 +52,22 @@ public class CostGraphActivity extends FragmentActivity {
 	 * menu; this adds items to the action bar if it is present.
 	 * getMenuInflater().inflate(R.menu.cost_graph, menu); return true; }
 	 */
+
+	protected void onPause() {
+		super.onPause();
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+	}
+
+	protected void onStop() {
+		super.onStop();
+	}
+
+	@Override
+	protected void onDestroy() {
+		super.onDestroy();
+	}
 }

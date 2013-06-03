@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -24,9 +25,9 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.util.Log;
+import edu.wpi.cs.peds.hmn.app.SleekAndroidActivity;
 import edu.wpi.cs.peds.hmn.log.HmnLog;
 import edu.wpi.cs.peds.hmn.stats.apps.GlobalAppList;
-import edu.wpi.cs.peds.hmn.app.SleekAndroidActivity;
 /**
  * POSTSs all collected data to the specified URL as JSON, and buffers data if
  * POSTing fails.
@@ -193,7 +194,25 @@ public class JSONSender extends AsyncTask<String,Object,Boolean>
 	private static boolean transmitData()
 	{
 	    Log.e(HmnLog.HMN_LOG_TAG, jsonBuffer.toString());
-		Log.i(HmnLog.HMN_LOG_TAG,"Messages to send: " + jsonBuffer.size());
+
+
+/*	    File sdCard = Environment.getExternalStorageDirectory();
+	    File file = new File (sdCard.getAbsolutePath() + "/hmnlog.txt");
+	    try {
+			file.createNewFile();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+	    FileWriter fw;
+		try {
+			fw = new FileWriter(file, true);
+			fw.write(jsonBuffer.toString());
+			fw.close();
+	   } catch (IOException e) {
+			e.printStackTrace();
+		}
+ */       
+	    Log.i(HmnLog.HMN_LOG_TAG,"Messages to send: " + jsonBuffer.size());
 		boolean success = true;
 	//only send data through WIFI
 		if(!SleekAndroidActivity.wifiConnected){
