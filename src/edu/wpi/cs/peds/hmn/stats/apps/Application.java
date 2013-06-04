@@ -49,7 +49,7 @@ public class Application implements Serializable {
 	public PowerStats powerStats;
 	public NetDevice lastConnectionType;
 	public AppStateMap appStateMap;
-	public AppState currentState = null;
+	public static AppState currentState = null;
 	public StateChanges stateChanges;
 
 	public Float userRating = 0.0f;
@@ -197,11 +197,11 @@ public class Application implements Serializable {
 	public Drawable getIcons() {
 		return icon;
 	}
-	
-	public float networkMonitorInfo(){
+
+	public float networkMonitorInfo() {
 		return netUsage.networkMonitorInfo();
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		Application app = (Application) obj;
@@ -220,8 +220,8 @@ public class Application implements Serializable {
 				appStateMap.detailedInfo()));
 		appStr.append(String.format("NETWORK USAGE\n%s\n\n",
 				netUsage.detailedInfo()));
-//		appStr.append(String.format("Battery INFO\n%s\n\n",
-//		powerStats.detailedInfo()));
+		// appStr.append(String.format("Battery INFO\n%s\n\n",
+		// powerStats.detailedInfo()));
 
 		if (!netUsage.isEmpty())
 			appStr.append(String.format("ENTRIES\n%s\n\n",
@@ -230,11 +230,25 @@ public class Application implements Serializable {
 		return appStr.toString();
 	}
 
+	// Current App cost information
 	public String costInfo() {
 		StringBuilder appCostStr = new StringBuilder();
 
-		appCostStr.append(String.format("NETWORK USAGE: %s\n", netUsage.costInfo()));
-		appCostStr.append(String.format("Battery INFO: %s\n", powerStats.costInfo()));
+		appCostStr.append(String.format("NETWORK USAGE: %s\n",
+				netUsage.costInfo()));
+		// appCostStr.append(String.format("Battery INFO: %s\n",
+		// powerStats.costInfo()));
+		return appCostStr.toString();
+	}
+
+	// total cost information of the device
+	public String totalCostInfo() {
+		StringBuilder appCostStr = new StringBuilder();
+
+		appCostStr.append(String.format("NETWORK USAGE: %s\n",
+				netUsage.totalCostInfo()));
+		appCostStr.append(String.format("Battery INFO: %s\n",
+				powerStats.costInfo()));
 		return appCostStr.toString();
 	}
 
@@ -242,8 +256,8 @@ public class Application implements Serializable {
 		JSONObject json = new JSONObject();
 
 		json.put("name", getName());
-		json.put("currentState", currentState.toJSONName());
-		json.put("stateTime", appStateMap.toJSON());
+		// json.put("currentState", currentState.toJSONName());
+		json.put("states", appStateMap.toJSON());
 		json.put("network", netUsage.toJSON());
 		json.put("rating", userRating);
 

@@ -196,7 +196,7 @@ public class JSONSender extends AsyncTask<String,Object,Boolean>
 	    Log.e(HmnLog.HMN_LOG_TAG, jsonBuffer.toString());
 
 
-/*	    File sdCard = Environment.getExternalStorageDirectory();
+	    File sdCard = Environment.getExternalStorageDirectory();
 	    File file = new File (sdCard.getAbsolutePath() + "/hmnlog.txt");
 	    try {
 			file.createNewFile();
@@ -211,7 +211,7 @@ public class JSONSender extends AsyncTask<String,Object,Boolean>
 	   } catch (IOException e) {
 			e.printStackTrace();
 		}
- */       
+       
 	    Log.i(HmnLog.HMN_LOG_TAG,"Messages to send: " + jsonBuffer.size());
 		boolean success = true;
 	//only send data through WIFI

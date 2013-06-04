@@ -41,7 +41,8 @@
         <activity android:enabled="true" android:name="edu.wpi.cs.peds.hmn.appdetailviewer.ApplicationDetailViewActivity"></activity>
         <activity android:name="edu.wpi.cs.peds.hmn.appstatviewer.AppStatViewerActivity"></activity>
         <activity android:name="edu.wpi.cs.peds.hmn.stats.costbenefit.CostBenefitActivity"></activity>
-        <activity android:name="edu.wpi.cs.peds.hmn.stats.costbenefit.CostGraphActivity"></activity>
+        <activity android:name="edu.wpi.cs.peds.hmn.stats.costbenefit.MyCostGraphActivity"></activity>
+        <activity android:name="edu.wpi.cs.peds.hmn.stats.costbenefit.OverallCostGraphActivity"></activity>
 </application>
 
 </manifest>

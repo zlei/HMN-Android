@@ -5,6 +5,7 @@ package edu.wpi.cs.peds.hmn.stats.apps;
 
 import java.util.HashMap;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -15,14 +16,18 @@ import edu.wpi.cs.peds.hmn.appcollector.AppState;
  * each possible app state, as well as defines how to convert itself into JSON.
  * 
  * @author Austin Noto-Moniz, austinnoto@wpi.edu
+ * @author Zhenhao Lei, zlei@wpi.edu
+ * 
  */
 public class AppStateMap extends HashMap<AppState,Long>
 {
 	// generated serial version
 	private static final long serialVersionUID = -8797161514386626838L;
-	
+	private long timestamp = 0;
+
 	public AppStateMap()
 	{
+		timestamp = System.currentTimeMillis();
 		for(AppState type : AppState.values())
 			this.put(type,0L);
 	}
@@ -37,7 +42,7 @@ public class AppStateMap extends HashMap<AppState,Long>
 		return appStateMapStr.toString();
 	}
 	
-	public JSONObject toJSON() throws JSONException
+	public JSONObject toJSONObj() throws JSONException
 	{
 		JSONObject json = new JSONObject();
 		
@@ -48,6 +53,15 @@ public class AppStateMap extends HashMap<AppState,Long>
 				json.put(state.toJSONName(),duration);
 		}
 		
+		json.put("currentState", Application.currentState.toJSONName());
+		json.put("timestamp",timestamp);
+		return json;
+	}
+	
+	
+	public JSONArray toJSON() throws JSONException{
+		JSONArray json = new JSONArray();
+		json.put(toJSONObj());
 		return json;
 	}
 }

@@ -77,4 +77,59 @@ public class LiveData {
 //		Log.e(HmnLog.HMN_LOG_TAG, "y!!!!!!!!!!!!!!!!!" + y);
 		return y;
 	}
+	
+		
+	public static Point getOverallTotalData(int x) {
+		if (x == 0) {
+			overallTotalData();	
+			return new Point(x, 0);
+		}
+		return new Point(x, overallTotalData());
+	}
+
+	public static Point getOverallUploadData(int x) {
+		if (x == 0) {
+			overallUploadData();
+			return new Point(x, 0);
+		}
+		return new Point(x, overallUploadData());
+	}
+
+	public static Point getOverallDownloadData(int x) {
+		if (x == 0) {
+			overallDownloadData();
+			return new Point(x, 0);
+		}
+		return new Point(x, overallDownloadData());
+	}
+
+	// Get the current upload, download and total bytes for the specific app by
+	// its UID
+	private static float overallTotalData() {
+		float y = 0;
+		totalafter = TrafficStats.getTotalRxBytes()
+				+ TrafficStats.getTotalTxBytes();
+		// use unit KB
+		y = (totalafter - totalbefore) / 1024;
+		totalbefore = totalafter;
+		return y;
+	}
+
+	private static float overallUploadData() {
+		float y = 0;
+		uploadafter = TrafficStats.getTotalTxBytes();
+		// use unit KB
+		y = (uploadafter - uploadbefore) / 1024;
+		uploadbefore = uploadafter;
+		return y;
+	}
+
+	private static float overallDownloadData() {
+		float y = 0;
+		downloadafter = TrafficStats.getTotalRxBytes();
+		// use unit KB
+		y = (downloadafter - downloadbefore) / 1024;
+		downloadbefore = downloadafter;
+		return y;
+	}
 }

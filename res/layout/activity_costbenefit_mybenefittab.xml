@@ -1,36 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/benefitRelativeLayout"
+    android:id="@+id/mybenefitLayout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:layout_marginTop="10dp"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:paddingLeft="16dp"
     android:paddingRight="16dp" >
 
-    <LinearLayout
-        android:id="@+id/benefitLayoutLeft"
-        android:layout_width="0dp"
+    <RelativeLayout
+        android:id="@+id/mybenefitrelativelayout1"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="5dp"
-        android:layout_marginTop="10dp"
-        android:layout_weight="1"
-        android:orientation="vertical" >
+        android:layout_marginTop="10dp" >
 
         <TextView
-            android:id="@+id/mybenefit"
-            android:layout_width="fill_parent"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:text="@string/myBenefit"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#2C6700" />
+            android:id="@+id/benefit_myRatingTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:text="@string/benefitMyRatingStr"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <RatingBar
+            android:id="@+id/benefit_myRating"
+            style="@style/userRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:isIndicator="false"
+            android:numStars="5" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/benefit_myRatingDetail"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <RelativeLayout
+        android:id="@+id/mybenefitrelativelayout2"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" >
+
+        <TextView
+            android:id="@+id/benefit_myPopularityTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:text="@string/benefitMyPopularityStr"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <RatingBar
+            android:id="@+id/benefit_myPopularity"
+            style="@style/dbRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:isIndicator="true"
+            android:numStars="5" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/benefit_myPopularityDetail"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <RelativeLayout
+        android:id="@+id/mybenefitrelativelayout3"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" >
 
         <TextView
             android:id="@+id/benefit_LaunchCountTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
             android:text="@string/benefitLaunchCountStr"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -39,22 +94,31 @@
             style="@style/dbRatingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
             android:isIndicator="true"
             android:numStars="5" />
+    </RelativeLayout>
 
-        <TextView
-            android:id="@+id/benefit_LaunchCountDetail"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+    <TextView
+        android:id="@+id/benefit_LaunchCountDetail"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <RelativeLayout
+        android:id="@+id/mybenefitrelativelayout4"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp" >
 
         <TextView
             android:id="@+id/benefit_UseTimeTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
             android:text="@string/benefitUseTimeStr"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -63,82 +127,17 @@
             style="@style/dbRatingBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
             android:isIndicator="true"
             android:numStars="5" />
+    </RelativeLayout>
 
-        <TextView
-            android:id="@+id/benefit_UseTimeDetail"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/benefitLayoutRight"
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/benefit_UseTimeDetail"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="10dp"
-        android:layout_weight="1"
-        android:orientation="vertical" >
-
-        <TextView
-            android:id="@+id/overallbenefit"
-            android:layout_width="fill_parent"
-            android:layout_height="50dp"
-            android:gravity="center"
-            android:text="@string/overallBenefit"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:textColor="#2C6700" />
-
-        <TextView
-            android:id="@+id/benefit_RatingTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/benefitRatingStr"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <RatingBar
-            android:id="@+id/benefit_Rating"
-            style="@style/dbRatingBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:isIndicator="true"
-            android:numStars="5" />
-
-        <TextView
-            android:id="@+id/benefit_RatingDetail"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
-
-        <TextView
-            android:id="@+id/benefit_PopularityTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/benefitPopularityStr"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <RatingBar
-            android:id="@+id/benefit_Popularity"
-            style="@style/dbRatingBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:isIndicator="true"
-            android:numStars="5" />
-
-        <TextView
-            android:id="@+id/benefit_PopularityDetail"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
-    </LinearLayout>
+        android:gravity="right"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
 </LinearLayout>

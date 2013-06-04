@@ -10,7 +10,7 @@ import edu.wpi.cs.peds.hmn.app.R;
  * @author Zhenhao Lei, zlei@wpi.edu
  */
 
-public class CostGraphActivity extends FragmentActivity {
+public class OverallCostGraphActivity extends FragmentActivity {
 	private static GraphicalView view;
 	private LineGraph line = new LineGraph();
 	private static Thread thread;
@@ -28,11 +28,11 @@ public class CostGraphActivity extends FragmentActivity {
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
-					Point p1 = LiveData.getTotalData(i);
+					Point p1 = LiveData.getOverallTotalData(i);
 					line.addNewTotalPoints(p1);
-					Point p2 = LiveData.getUploadData(i);
+					Point p2 = LiveData.getOverallUploadData(i);
 					line.addNewUploadPoints(p2);
-					Point p3 = LiveData.getDownloadData(i);
+					Point p3 = LiveData.getOverallDownloadData(i);
 					line.addNewDownloadPoints(p3);
 					view.repaint();
 				}

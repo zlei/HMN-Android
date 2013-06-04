@@ -20,6 +20,7 @@ import edu.wpi.cs.peds.hmn.appcollector.NetDevice;
  * 
  * @author Richard Brown, rpb111@wpi.edu
  * @author Austin Noto-Moniz, austinnoto@wpi.edu
+ * @author Zhenhao Lei, zlei@wpi.edu
  * 
  */
 public class NetUsageEntry extends NetworkStats implements Serializable {

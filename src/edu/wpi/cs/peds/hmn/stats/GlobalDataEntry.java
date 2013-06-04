@@ -18,7 +18,7 @@ import edu.wpi.cs.peds.hmn.stats.net.NetworkStats;
  * stats.
  * 
  * @author Austin Noto-Moniz, austinnoto@wpi.edu
- * 
+ * @author Zhenhao Lei, zlei@wpi.edu
  */
 public class GlobalDataEntry
 {

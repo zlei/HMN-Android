@@ -12,6 +12,8 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import android.net.TrafficStats;
+
 import edu.wpi.cs.peds.hmn.appcollector.AppState;
 
 /**
@@ -20,7 +22,7 @@ import edu.wpi.cs.peds.hmn.appcollector.AppState;
  * 
  * @author Richard Brown, rpb111@wpi.edu
  * @author Austin Noto-Moniz, austinnoto@wpi.edu
- * 
+ * @author Zhenhao Lei, zlei@wpi.edu
  */
 public class NetUsageList extends LinkedList<NetUsageEntry> {
 	/**
@@ -48,6 +50,17 @@ public class NetUsageList extends LinkedList<NetUsageEntry> {
 		@Override
 		public double getBytes(NetUsageEntry entry) {
 			return entry.receivedBytes;
+		}
+	};
+
+	private final GetBytes getTotalBytes = new GetBytes() {
+		private static final long serialVersionUID = 1598451321684946546L;
+
+		@Override
+		public double getBytes(NetUsageEntry entry) {
+
+			totalBytes = entry.transmittedBytes + entry.receivedBytes;
+			return totalBytes;
 		}
 	};
 
@@ -121,10 +134,9 @@ public class NetUsageList extends LinkedList<NetUsageEntry> {
 		for (NetUsageEntry entry : this)
 			if (stateList.isEmpty() || stateList.contains(entry.state))
 				bytes += getBytes.getBytes(entry);
-		totalBytes = (float)bytes;
 		return formatBytes(bytes);
 	}
-	
+
 	public String getShortString() {
 		return String.format("Total Up: %s\nTotal Down: %s",
 				getPrettyBytes(getUploadedBytes),
@@ -168,15 +180,39 @@ public class NetUsageList extends LinkedList<NetUsageEntry> {
 
 	public String costInfo() {
 		StringBuilder netUsageStr = new StringBuilder();
+
+		netUsageStr.append("\nTotal Data: ");
+		netUsageStr.append(String.format(getPrettyBytes(getTotalBytes)));
+
 		netUsageStr.append("\nTotal Uploaded: ");
 		netUsageStr.append(String.format(getPrettyBytes(getUploadedBytes)));
 
 		netUsageStr.append("\nTotal Downloaded: ");
 		netUsageStr.append(String.format(getPrettyBytes(getDownloadedBytes)));
+
+		netUsageStr
+				.append(String
+						.format("\nTotal Percentage: %.2f %%",
+								(totalBytes / (float) (TrafficStats
+										.getTotalTxBytes() + TrafficStats
+										.getTotalRxBytes())) * 100));
 		return netUsageStr.toString();
 	}
-	
-	public float networkMonitorInfo(){
+
+	public String totalCostInfo() {
+		StringBuilder netUsageStr = new StringBuilder();
+		netUsageStr.append(String.format(
+				"\nTotal Usage: %.2f MB",
+				(float) (TrafficStats.getTotalTxBytes() + TrafficStats
+						.getTotalRxBytes()) / (1024 * 1024)));
+		netUsageStr.append(String.format("\nTotal Uploaded: %.2f MB",
+				(float) TrafficStats.getTotalTxBytes() / (1024 * 1024)));
+		netUsageStr.append(String.format("\nTotal Downloaded: %.2f MB",
+				(float) TrafficStats.getTotalRxBytes() / (1024 * 1024)));
+		return netUsageStr.toString();
+	}
+
+	public float networkMonitorInfo() {
 		return totalBytes;
 	}
 
@@ -197,7 +233,6 @@ public class NetUsageList extends LinkedList<NetUsageEntry> {
 		for (NetUsageEntry entry : this)
 			if (entry.networkUsed())
 				json.put(entry.toJSON());
-
 		return json;
 	}
 }

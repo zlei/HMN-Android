@@ -20,7 +20,9 @@
     <string name="dbRatingStr">Overall Rating:</string>
     <string name="userRatingStr">Your Rating:</string>
     <string name="benefitRatingStr">Overall Rating:</string>
-    <string name="benefitPopularityStr">Popularity:</string>
+    <string name="benefitPopularityStr">Overall Popularity:</string>
+    <string name="benefitMyRatingStr">My Rating:</string>
+    <string name="benefitMyPopularityStr">My Popularity:</string>
     <string name="benefitLaunchCountStr">Launch Count:</string>
     <string name="benefitUseTimeStr">Used Time:</string>
     <string name="myBenefit">My Benefit</string>
@@ -31,6 +33,9 @@
     <string name="wifi_connected">Wi-Fi connected.</string>
     <string name="connection_error">Unable to load content. Check your network connection.</string>
     <string name="costInfo">Cost and Benefit</string>
+    <string name="monitorForApp">Network Monitor For App</string>
+    <string name="monitorForDevice">Network Monitor For Device</string>
+
     <string name="app_class_all">All Apps</string>
     <string name="app_class_active">Active Apps</string>
     <string name="app_class_run">Running Apps</string>

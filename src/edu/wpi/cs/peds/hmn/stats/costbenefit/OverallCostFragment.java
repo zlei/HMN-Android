@@ -28,16 +28,18 @@ public class OverallCostFragment extends Fragment{
     	Application chosenApp = null;
     	CostBenefitActivity costuid = (CostBenefitActivity)getActivity();
 		chosenApp = GlobalAppList.getInstance().getApp(costuid.currentUid);
-    	String appDetails = chosenApp.costInfo();
+    	String appDetails = chosenApp.totalCostInfo();
+
     	View view = inflater.inflate(R.layout.activity_costbenefit_overallcosttab, container, false);
-        TextView textview = (TextView) view.findViewById(R.id.costDetail);
+        TextView textview = (TextView) view.findViewById(R.id.overallCostDetail);
         textview.setText(appDetails);
 
         Button button = (Button) view.findViewById(R.id.networkMonitor);
 		button.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
 				Intent intent = new Intent();
-				intent.setClass(getActivity(), CostGraphActivity.class);
+//ATTENTION!!!!!STILL USING MY COST FOR TEST
+				intent.setClass(getActivity(), MyCostGraphActivity.class);
 				getActivity().startActivity(intent);
 			}
 		});

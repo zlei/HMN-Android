@@ -30,7 +30,7 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
 			myCostFragment.setArguments(data);
 			return myCostFragment;
 		case 1:
-			MyBenefitFragment overallCostFragment = new MyBenefitFragment();
+			OverallCostFragment overallCostFragment = new OverallCostFragment();
 			data.putInt("current_page", arg0 + 1);
 			overallCostFragment.setArguments(data);
 			return overallCostFragment;
@@ -40,7 +40,7 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
 			myBenefitFragment.setArguments(data);
 			return myBenefitFragment;
 		case 3:
-			MyBenefitFragment overallBenefitFragment = new MyBenefitFragment();
+			OverallBenefitFragment overallBenefitFragment = new OverallBenefitFragment();
 			data.putInt("current_page", arg0 + 1);
 			overallBenefitFragment.setArguments(data);
 			return overallBenefitFragment;
