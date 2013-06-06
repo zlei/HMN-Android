@@ -7,42 +7,70 @@
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="17" />
-    
-    <uses-permission android:name="android.permission.READ_LOGS"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
-    <uses-permission android:name="android.permission.GET_TASKS"/>
+
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
-    <application android:theme="@style/ApplicationStyle" android:icon="@drawable/icon" android:label="@string/app_name" android:allowBackup="true">
-        <service android:label="AppCollectorService" android:name="edu.wpi.cs.peds.hmn.appcollector.AppCollectorService" android:enabled="true"></service>
-        <receiver android:enabled="true" android:name="edu.wpi.cs.peds.hmn.appcollector.AppStatCollectorBootReceiver">
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/icon"
+        android:label="@string/app_name"
+        android:theme="@style/ApplicationStyle" >
+        <service
+            android:name="edu.wpi.cs.peds.hmn.appcollector.AppCollectorService"
+            android:enabled="true"
+            android:label="AppCollectorService" >
+        </service>
+
+        <receiver
+            android:name="edu.wpi.cs.peds.hmn.appcollector.AppStatCollectorBootReceiver"
+            android:enabled="true" >
             <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" /> 
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-        
-        <activity android:name="SleekAndroidActivity" android:enabled="true" android:exported="true">
+
+        <activity
+            android:name="edu.wpi.cs.peds.hmn.app.SleekAndroidActivity"
+            android:enabled="true"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name="edu.wpi.cs.peds.hmn.settings.SettingsActivity">
-             <intent-filter>
+        <activity android:name="edu.wpi.cs.peds.hmn.settings.SettingsActivity" >
+            <intent-filter>
                 <action android:name="android.intent.action.MANAGE_NETWORK_USAGE" />
+
                 <category android:name="android.intent.category.DEFAULT" />
-          </intent-filter>
+            </intent-filter>
         </activity>
-        
-        <activity android:enabled="true" android:name="edu.wpi.cs.peds.hmn.appdetailviewer.ApplicationDetailViewActivity"></activity>
-        <activity android:name="edu.wpi.cs.peds.hmn.appstatviewer.AppStatViewerActivity"></activity>
-        <activity android:name="edu.wpi.cs.peds.hmn.stats.costbenefit.CostBenefitActivity"></activity>
-        <activity android:name="edu.wpi.cs.peds.hmn.stats.costbenefit.MyCostGraphActivity"></activity>
-        <activity android:name="edu.wpi.cs.peds.hmn.stats.costbenefit.OverallCostGraphActivity"></activity>
-</application>
+        <activity
+            android:name="edu.wpi.cs.peds.hmn.appdetailviewer.ApplicationDetailViewActivity"
+            android:enabled="true" >
+        </activity>
+        <activity android:name="edu.wpi.cs.peds.hmn.appstatviewer.AppStatViewerActivity" >
+        </activity>
+        <activity android:name="edu.wpi.cs.peds.hmn.stats.costbenefit.CostBenefitActivity" >
+        </activity>
+        <activity android:name="edu.wpi.cs.peds.hmn.stats.costbenefit.MyCostGraphActivity" >
+        </activity>
+        <activity android:name="edu.wpi.cs.peds.hmn.stats.costbenefit.OverallCostGraphActivity" >
+        </activity>
+        <activity
+            android:name="edu.wpi.cs.peds.hmn.stats.costbenefit.MyBenefitDetailActivity"
+            android:label="@string/title_activity_my_benefit_detail" >
+        </activity>
+        <activity
+            android:name="edu.wpi.cs.peds.hmn.stats.costbenefit.OverallBenefitDetailActivity"
+            android:label="@string/title_activity_overall_benefit_detail" >
+        </activity>
+    </application>
 
 </manifest>

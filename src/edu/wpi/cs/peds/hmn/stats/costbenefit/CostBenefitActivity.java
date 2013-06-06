@@ -82,11 +82,11 @@ public class CostBenefitActivity extends FragmentActivity {
 			}
 		};
 
-		Tab tab = mActionBar.newTab().setText("My Cost")
+		Tab tab = mActionBar.newTab().setText("App Cost")
 				.setTabListener(tabListener);
 		mActionBar.addTab(tab);
 
-		tab = mActionBar.newTab().setText("Overall Cost")
+		tab = mActionBar.newTab().setText("Device Cost")
 				.setTabListener(tabListener);
 		mActionBar.addTab(tab);
 

@@ -149,7 +149,7 @@ public class PowerStats {
 	 */
 	public String costInfo() {
 		StringBuilder powerCostStatsStr = new StringBuilder();
-		powerCostStatsStr.append(String.format("\nRemaining battery: %.2f%%\n",
+		powerCostStatsStr.append(String.format("\nRemaining battery: %.0f%%\n",
 				batteryPercentage));
 		return powerCostStatsStr.toString();
 	}

@@ -1,10 +1,13 @@
 package edu.wpi.cs.peds.hmn.stats.costbenefit;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import edu.wpi.cs.peds.hmn.app.R;
@@ -60,6 +63,24 @@ public class MyBenefitFragment extends Fragment {
 					}
 				});
 
+		//set rating bar, retrieved data from database
+		RatingBar Urate = (RatingBar) view.findViewById(R.id.benefit_UseTime);
+		RatingBar Lrate = (RatingBar) view.findViewById(R.id.benefit_LaunchCount);
+		RatingBar Mrate = (RatingBar) view.findViewById(R.id.benefit_myPopularity);
+		Urate.setRating(Float.parseFloat("3.6"));
+		Lrate.setRating(Float.parseFloat("2.5"));	
+		Mrate.setRating(Float.parseFloat("4.0"));	
+	
+		
+		Button button = (Button) view.findViewById(R.id.mybenefitbutton);
+		button.setOnClickListener(new OnClickListener() {
+			public void onClick(View arg0) {
+				Intent intent = new Intent();
+				intent.setClass(getActivity(), MyBenefitDetailActivity.class);
+				getActivity().startActivity(intent);
+			}
+		});
+
 		return view;
 	}
 
@@ -82,7 +103,7 @@ public class MyBenefitFragment extends Fragment {
 
 	public String reviewInfo() {
 		StringBuilder appCostStr = new StringBuilder();
-//		appCostStr.append(String.format("My Rating: 4.2/5"));
+		// appCostStr.append(String.format("My Rating: 4.2/5"));
 		return appCostStr.toString();
 	}
 
@@ -91,6 +112,7 @@ public class MyBenefitFragment extends Fragment {
 		// appCostStr.append(String.format("Total installed: %d", popular));
 		return appCostStr.toString();
 	}
+
 	/*
 	 * public final void appCount() { Application a; CostBenefitActivity costuid
 	 * = (CostBenefitActivity)getActivity(); a =
