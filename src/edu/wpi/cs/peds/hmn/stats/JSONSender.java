@@ -7,7 +7,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -193,10 +192,10 @@ public class JSONSender extends AsyncTask<String,Object,Boolean>
 	 */
 	private static boolean transmitData()
 	{
-	    Log.e(HmnLog.HMN_LOG_TAG, jsonBuffer.toString());
 
-
-	    File sdCard = Environment.getExternalStorageDirectory();
+	    Log.i(HmnLog.HMN_LOG_TAG,"Messages to send: " + jsonBuffer.size());
+//		Log.i(HmnLog.HMN_LOG_TAG, jsonBuffer.toString());
+/*	    File sdCard = Environment.getExternalStorageDirectory();
 	    File file = new File (sdCard.getAbsolutePath() + "/hmnlog.txt");
 	    try {
 			file.createNewFile();
@@ -211,8 +210,8 @@ public class JSONSender extends AsyncTask<String,Object,Boolean>
 	   } catch (IOException e) {
 			e.printStackTrace();
 		}
-       
-	    Log.i(HmnLog.HMN_LOG_TAG,"Messages to send: " + jsonBuffer.size());
+ */   
+   
 		boolean success = true;
 	//only send data through WIFI
 		if(!SleekAndroidActivity.wifiConnected){
@@ -261,11 +260,14 @@ public class JSONSender extends AsyncTask<String,Object,Boolean>
 		try
 		{
 			JSONObject info = GlobalDataCollector.getInstance().toJSON();
+//			Log.i(HmnLog.HMN_LOG_TAG, info.toString());
 			info.put("apps",GlobalAppList.getInstance().toJSON());
-			
+//			Log.i(HmnLog.HMN_LOG_TAG, info.toString());
+
 			GlobalDataCollector.getInstance().clearStats();
 			GlobalAppList.getInstance().clearStats();
 			
+//			Log.i(HmnLog.HMN_LOG_TAG, info.toString());
 			return info;
 		}
 		catch (JSONException e)
@@ -351,7 +353,7 @@ public class JSONSender extends AsyncTask<String,Object,Boolean>
 		}
 	    
 	    if (response == null)
-	    	Log.e(HmnLog.HMN_LOG_TAG,"Unkown error occurred");
+	    	Log.e(HmnLog.HMN_LOG_TAG,"Unknown error occurred");
 	    else if (response.getStatusLine().getStatusCode() >= 300)
 	    	Log.e(HmnLog.HMN_LOG_TAG,"HTTP Error Code: " + response.getStatusLine().getStatusCode());
 		
@@ -371,7 +373,7 @@ public class JSONSender extends AsyncTask<String,Object,Boolean>
 		{
 			try {
 				System.out.println(json.toString(4));
-	    	Log.e(HmnLog.HMN_LOG_TAG,"!!!!!!!!!!!!!!!!!!!"+ json.toString(4));
+//	    	Log.e(HmnLog.HMN_LOG_TAG,"!!!!!!!!!!!!!!!!!!!"+ json.toString(4));
 			} catch (JSONException e) {}
 		}
 		if (toFile)

@@ -30,6 +30,7 @@ import edu.wpi.cs.peds.hmn.appstatviewer.sorting.SortOrder;
 import edu.wpi.cs.peds.hmn.log.HmnLog;
 import edu.wpi.cs.peds.hmn.stats.apps.Application;
 import edu.wpi.cs.peds.hmn.stats.apps.GlobalAppList;
+import edu.wpi.cs.peds.hmn.stats.costbenefit.OverallBenefitDetailActivity;
 
 /**
  * The view of the app list shown to the user
@@ -66,7 +67,7 @@ public class AppStatViewerActivity extends ListActivity implements IObserver {
 	private List<Application> apps;
 	private Intent appCollector;
 	private AppCollectorServiceConnection appCollectorConnection;
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -173,6 +174,7 @@ public class AppStatViewerActivity extends ListActivity implements IObserver {
 			// Sends the UID for lookup
 			Intent detailIntent = new Intent(this,
 					ApplicationDetailViewActivity.class);
+
 			ByteArrayOutputStream bos = new ByteArrayOutputStream();
 			ObjectOutputStream oos;
 			try {
@@ -189,24 +191,17 @@ public class AppStatViewerActivity extends ListActivity implements IObserver {
 		}
 	}
 
-/*	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.activity_app_list, menu);
-		return true;
-	}
-
-	// Handles the user's menu selection.
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case R.id.refresh:
-			refresh = true;
-			return true;
-		default:
-			return super.onOptionsItemSelected(item);
-		}
-	}
-*/
+	/*
+	 * public boolean onCreateOptionsMenu(Menu menu) { MenuInflater inflater =
+	 * getMenuInflater(); inflater.inflate(R.menu.activity_app_list, menu);
+	 * return true; }
+	 * 
+	 * // Handles the user's menu selection.
+	 * 
+	 * @Override public boolean onOptionsItemSelected(MenuItem item) { switch
+	 * (item.getItemId()) { case R.id.refresh: refresh = true; return true;
+	 * default: return super.onOptionsItemSelected(item); } }
+	 */
 	@Override
 	protected void onPause() {
 		super.onPause();
@@ -224,16 +219,15 @@ public class AppStatViewerActivity extends ListActivity implements IObserver {
 		}
 	}
 
-	protected void onStop(){
+	protected void onStop() {
 		super.onStop();
 		unbindService(appCollectorConnection);
 	}
 
-	
 	@Override
 	protected void onDestroy() {
 		super.onDestroy();
-//		unbindService(appCollectorConnection);
+		// unbindService(appCollectorConnection);
 	}
 
 	public void update(IObservable O, Object arg) {

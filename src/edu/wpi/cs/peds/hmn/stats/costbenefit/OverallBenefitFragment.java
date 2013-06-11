@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import edu.wpi.cs.peds.hmn.app.R;
+import edu.wpi.cs.peds.hmn.stats.apps.Application;
+import edu.wpi.cs.peds.hmn.stats.apps.GlobalAppList;
 
 /**
  * @author Zhenhao Lei, zlei@wpi.edu
@@ -25,11 +27,11 @@ public class OverallBenefitFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		// Application chosenApp = null;
-		// CostBenefitActivity costuid = (CostBenefitActivity)getActivity();
-		// chosenApp = GlobalAppList.getInstance().getApp(costuid.currentUid);
-		String ReviewDetail = reviewInfo();
-		String PopularityDetail = popularityInfo();
+		Application chosenApp = null;
+		CostBenefitActivity costuid = (CostBenefitActivity)getActivity();
+		chosenApp = GlobalAppList.getInstance().getApp(costuid.currentUid);
+		String ReviewDetail = reviewInfo(chosenApp);
+		String PopularityDetail = popularityInfo(chosenApp);
 		View view = inflater.inflate(
 				R.layout.activity_costbenefit_overallbenefittab, container,
 				false);
@@ -45,7 +47,7 @@ public class OverallBenefitFragment extends Fragment {
 		//set rating bar, retrieved data from database
 		RatingBar Orate = (RatingBar) view.findViewById(R.id.benefit_Rating);
 		RatingBar Prate = (RatingBar) view.findViewById(R.id.benefit_Popularity);
-		Orate.setRating(Float.parseFloat("3.6"));
+		Orate.setRating(chosenApp.dbRating);
 		Prate.setRating(Float.parseFloat("2.0"));	
 	
 		//to show all the detail information retrieved from database
@@ -66,13 +68,12 @@ public class OverallBenefitFragment extends Fragment {
 		super.onStart();
 	}
 
-	public String reviewInfo() {
-		StringBuilder appCostStr = new StringBuilder();
-		appCostStr.append(String.format("Overall Rating: 0/5"));
-		return appCostStr.toString();
+	public String reviewInfo(Application chosenApp) {
+		String appCostStr = String.format("Overall Rating: %.1f/5.0", chosenApp.dbRating);
+		return appCostStr;
 	}
 
-	public String popularityInfo() {
+	public String popularityInfo(Application chosenApp) {
 		StringBuilder appCostStr = new StringBuilder();
 		appCostStr.append(String.format("Total installed: %d", popular));
 		return appCostStr.toString();

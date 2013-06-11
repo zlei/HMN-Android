@@ -35,7 +35,7 @@ public class Application implements Serializable {
 	 */
 	private static final long serialVersionUID = 2965841186830803626L;
 
-	private String name;
+	public String name;
 	public Drawable icon;
 	public String packageName;
 	public String version;
