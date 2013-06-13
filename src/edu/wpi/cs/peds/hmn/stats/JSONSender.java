@@ -262,7 +262,7 @@ public class JSONSender extends AsyncTask<String,Object,Boolean>
 			JSONObject info = GlobalDataCollector.getInstance().toJSON();
 //			Log.i(HmnLog.HMN_LOG_TAG, info.toString());
 			info.put("apps",GlobalAppList.getInstance().toJSON());
-//			Log.i(HmnLog.HMN_LOG_TAG, info.toString());
+			//			Log.i(HmnLog.HMN_LOG_TAG, info.toString());
 
 			GlobalDataCollector.getInstance().clearStats();
 			GlobalAppList.getInstance().clearStats();

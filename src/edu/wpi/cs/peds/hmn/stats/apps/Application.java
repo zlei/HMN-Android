@@ -222,7 +222,7 @@ public class Application implements Serializable {
 	public String toString() {
 		return this.getName();
 	}
-
+	
 	public String detailedInfo() {
 		StringBuilder appStr = new StringBuilder();
 
@@ -264,7 +264,6 @@ public class Application implements Serializable {
 
 	public JSONObject toJSON() throws JSONException {
 		JSONObject json = new JSONObject();
-
 		json.put("name", getName());
 		// json.put("currentState", currentState.toJSONName());
 		json.put("states", appStateMap.toJSON());

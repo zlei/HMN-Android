@@ -30,7 +30,7 @@ public class GlobalDataCollector {
 	private List<GlobalDataEntry> dataEntries;
 
 	private static GlobalDataCollector globalDataCollector;
-
+		
 	private GlobalDataCollector() {
 		dataEntries = new ArrayList<GlobalDataEntry>();
 	}
@@ -101,11 +101,9 @@ public class GlobalDataCollector {
 
 		json.put("id", Build.SERIAL);
 		json.put("info", new JSONObject(getPhoneInfo()));
-
 		JSONArray statsArray = new JSONArray();
 		for (GlobalDataEntry dataEntry : dataEntries)
 			statsArray.put(dataEntry.toJSON());
-
 		json.put("stats", statsArray);
 //		Log.i(HmnLog.HMN_LOG_TAG, json.toString());
 		return json;
