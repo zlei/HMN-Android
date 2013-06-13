@@ -155,10 +155,10 @@
 				},
 				
 				"network": {
-					"type": "array",
-					"items": {
-						"description": "App's network usage",
-						"$ref": "#/definitions/networkEntry"
+					"type": "object",
+					"properties": {
+						"sent": {"description": "Data sent, in bytes", "type": "number"},
+						"received": {"description": "Data received, in bytes", "type": "number"}
 					}
 				},
 				

@@ -194,7 +194,7 @@ public class JSONSender extends AsyncTask<String,Object,Boolean>
 	{
 
 	    Log.i(HmnLog.HMN_LOG_TAG,"Messages to send: " + jsonBuffer.size());
-//		Log.i(HmnLog.HMN_LOG_TAG, jsonBuffer.toString());
+		Log.i(HmnLog.HMN_LOG_TAG, jsonBuffer.toString());
 /*	    File sdCard = Environment.getExternalStorageDirectory();
 	    File file = new File (sdCard.getAbsolutePath() + "/hmnlog.txt");
 	    try {

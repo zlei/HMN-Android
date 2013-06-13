@@ -10,6 +10,7 @@ import org.json.JSONObject;
 
 import android.net.TrafficStats;
 import edu.wpi.cs.peds.hmn.appcollector.AppState;
+import edu.wpi.cs.peds.hmn.appdetailviewer.ApplicationDetailViewActivity;
 
 /**
  * A container for a snapshot of network traffic.
@@ -24,11 +25,14 @@ public class NetworkStats implements Serializable
 	 * Generated serial ID
 	 */
 	private static final long serialVersionUID = 6809596130296723855L;
-	
 	public long receivedBytes = 0;
 	public long transmittedBytes = 0;
-	public AppState state = null;
 	
+	public long appReceivedBytes = 0;
+	public long appTransmittedBytes = 0;
+
+	public AppState state = null;
+
 	/**
 	 * Returns a new object containing the current network usage totals for the
 	 * given uid. If the received bytes or transmitted bytes (or both) cannot
@@ -63,6 +67,8 @@ public class NetworkStats implements Serializable
 	{
 		this.receivedBytes = networkStats.receivedBytes;
 		this.transmittedBytes = networkStats.transmittedBytes;
+		this.appReceivedBytes = TrafficStats.getUidRxBytes(ApplicationDetailViewActivity.uid);
+		this.appTransmittedBytes = TrafficStats.getUidTxBytes(ApplicationDetailViewActivity.uid);
 		this.state = networkStats.state;
 	}
 	
@@ -72,6 +78,7 @@ public class NetworkStats implements Serializable
 		this.transmittedBytes = transmittedBytes;
 		this.state = state;
 	}
+
 	
 	/**
 	 * Calculates the difference between this instance and the provided

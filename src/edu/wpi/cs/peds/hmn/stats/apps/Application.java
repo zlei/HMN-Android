@@ -6,6 +6,7 @@ package edu.wpi.cs.peds.hmn.stats.apps;
 import java.io.Serializable;
 import java.util.Date;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -202,6 +203,15 @@ public class Application implements Serializable {
 		return netUsage.networkMonitorInfo();
 	}
 
+	public JSONArray getNetUsage() {
+		try {
+			return netUsage.apptoJSON();
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	@Override
 	public boolean equals(Object obj) {
 		Application app = (Application) obj;
@@ -258,7 +268,8 @@ public class Application implements Serializable {
 		json.put("name", getName());
 		// json.put("currentState", currentState.toJSONName());
 		json.put("states", appStateMap.toJSON());
-		json.put("network", netUsage.toJSON());
+//		Log.i(HmnLog.HMN_LOG_TAG, netUsage.appUsageInfo());
+		json.put("network", getNetUsage());
 		json.put("rating", userRating);
 
 		return json;

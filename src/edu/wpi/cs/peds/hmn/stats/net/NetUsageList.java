@@ -13,8 +13,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import android.net.TrafficStats;
-
 import edu.wpi.cs.peds.hmn.appcollector.AppState;
+import edu.wpi.cs.peds.hmn.appdetailviewer.ApplicationDetailViewActivity;
+import edu.wpi.cs.peds.hmn.stats.apps.Application;
 
 /**
  * A list of network data which can be formatted nicely for output, as well as
@@ -33,6 +34,8 @@ public class NetUsageList extends LinkedList<NetUsageEntry> {
 	private final long BASE = 1024, KB = BASE, MB = KB * BASE, GB = MB * BASE;
 	private final DecimalFormat df = new DecimalFormat("#.##");
 	private float totalBytes;
+
+	Application chosenApp;
 	// Interface implementation for getting a NetUsageEntry's uploaded bytes
 	private final GetBytes getUploadedBytes = new GetBytes() {
 		private static final long serialVersionUID = -3706296390701186785L;
@@ -216,6 +219,23 @@ public class NetUsageList extends LinkedList<NetUsageEntry> {
 		return totalBytes;
 	}
 
+	public String appUsageInfo() {
+		int currentUid = ApplicationDetailViewActivity.uid;
+		String appNetUsageStr = "";
+
+		for (NetUsageEntry entry : this)
+			if (entry.networkUsed()) {
+				Float total = (float) (TrafficStats.getUidTxBytes(currentUid) + TrafficStats
+						.getUidRxBytes(currentUid)) / 1024;
+				String totalUsage = total.toString();
+				String downloaded = " downloaded: " + (float) TrafficStats.getUidRxBytes(currentUid) / 1024;
+				String uploaded = " uploaded: " + (float) TrafficStats.getUidTxBytes(currentUid) / 1024;
+				appNetUsageStr = total + uploaded + downloaded;
+				return totalUsage;
+			}
+		return "";
+	}
+
 	public String entryListDetails() {
 		StringBuilder entryStr = new StringBuilder();
 		for (NetUsageEntry entry : this)
@@ -233,6 +253,15 @@ public class NetUsageList extends LinkedList<NetUsageEntry> {
 		for (NetUsageEntry entry : this)
 			if (entry.networkUsed())
 				json.put(entry.toJSON());
+		return json;
+	}
+
+	public JSONArray apptoJSON() throws JSONException {
+		JSONArray json = new JSONArray();
+
+		for (NetUsageEntry entry : this)
+			if (entry.networkUsed())
+				json.put(entry.apptoJSON());
 		return json;
 	}
 }
