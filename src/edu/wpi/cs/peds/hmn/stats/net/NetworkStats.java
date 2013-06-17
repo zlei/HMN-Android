@@ -10,7 +10,6 @@ import org.json.JSONObject;
 
 import android.net.TrafficStats;
 import edu.wpi.cs.peds.hmn.appcollector.AppState;
-import edu.wpi.cs.peds.hmn.appdetailviewer.ApplicationDetailViewActivity;
 
 /**
  * A container for a snapshot of network traffic.
@@ -27,9 +26,6 @@ public class NetworkStats implements Serializable
 	private static final long serialVersionUID = 6809596130296723855L;
 	public long receivedBytes = 0;
 	public long transmittedBytes = 0;
-	
-	public long appReceivedBytes = 0;
-	public long appTransmittedBytes = 0;
 
 	public AppState state = null;
 
@@ -67,8 +63,6 @@ public class NetworkStats implements Serializable
 	{
 		this.receivedBytes = networkStats.receivedBytes;
 		this.transmittedBytes = networkStats.transmittedBytes;
-		this.appReceivedBytes = TrafficStats.getUidRxBytes(ApplicationDetailViewActivity.uid);
-		this.appTransmittedBytes = TrafficStats.getUidTxBytes(ApplicationDetailViewActivity.uid);
 		this.state = networkStats.state;
 	}
 	

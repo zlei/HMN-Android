@@ -30,7 +30,7 @@ public class GlobalDataCollector {
 	private List<GlobalDataEntry> dataEntries;
 
 	private static GlobalDataCollector globalDataCollector;
-		
+
 	private GlobalDataCollector() {
 		dataEntries = new ArrayList<GlobalDataEntry>();
 	}
@@ -58,9 +58,10 @@ public class GlobalDataCollector {
 	public void gatherStats(Context context) {
 		Map<Application, AppState> appStateMap = GlobalAppList.getInstance()
 				.getAppStateMap();
-		for (Application app : GlobalAppList.getInstance().getAllApps())
+		for (Application app : GlobalAppList.getInstance().getAllApps()) {
+			// Log.i(HmnLog.HMN_LOG_TAG, app + ":   " + appStateMap.get(app));
 			app.updateStats(context, appStateMap.get(app));
-
+		}
 		dataEntries.add(new GlobalDataEntry(context));
 	}
 
@@ -105,7 +106,7 @@ public class GlobalDataCollector {
 		for (GlobalDataEntry dataEntry : dataEntries)
 			statsArray.put(dataEntry.toJSON());
 		json.put("stats", statsArray);
-//		Log.i(HmnLog.HMN_LOG_TAG, json.toString());
+		// Log.i(HmnLog.HMN_LOG_TAG, json.toString());
 		return json;
 	}
 }

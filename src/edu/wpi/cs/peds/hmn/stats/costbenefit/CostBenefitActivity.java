@@ -22,12 +22,11 @@ public class CostBenefitActivity extends FragmentActivity {
 	ViewPager mPager;
 
 	int currentUid;
-
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_costbenefit);
-		currentUid = ApplicationDetailViewActivity.uid;
+		currentUid = ApplicationDetailViewActivity.chosenApp.uid;
 
 		/** Getting a reference to action bar of this activity */
 		mActionBar = getActionBar();

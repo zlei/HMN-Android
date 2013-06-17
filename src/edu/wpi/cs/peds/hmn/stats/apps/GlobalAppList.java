@@ -15,8 +15,10 @@ import org.json.JSONException;
 
 import android.app.ActivityManager;
 import android.content.pm.PackageManager;
+import android.util.Log;
 import edu.wpi.cs.peds.hmn.app.SleekAndroidActivity;
 import edu.wpi.cs.peds.hmn.appcollector.AppState;
+import edu.wpi.cs.peds.hmn.log.HmnLog;
 
 /**
  * Manages the list of apps installed on the phone. Provides the master list of
@@ -33,7 +35,7 @@ public class GlobalAppList {
 
 	private final List<Application> allApps;
 	private List<Application> displayedApps;
-	private List<Application> toSendApps;
+	private final List<Application> toSendApps;
 	private AppState displayState;
 
 	private PackageManager packageManager;
@@ -109,16 +111,15 @@ public class GlobalAppList {
 		if (!SleekAndroidActivity.hideSystemApp) {
 			allApps.removeAll(systemApps);
 		}
-		// get to send app list
+		// get to send app list, can choose which kind of apps to be sent
 
-		// toSendApps = toSendApps();
-//		toSendApps = getActive();
-//		toSendApps = getRunningApps();
-		toSendApps = getForegroundApps();
-//		toSendApps = getBackgroundApps();
-//		toSendApps = getCachedApps();
-//		toSendApps = getNotRunningApps();
+		// toSendApps = getActive();
+		// toSendApps = getForegroundApps();
+		// toSendApps = getBackgroundApps();
+		// toSendApps = getCachedApps();
+		// toSendApps = getNotRunningApps();
 
+		toSendApps = getRunningApps();
 		displayedApps = allApps;
 	}
 
@@ -275,11 +276,10 @@ public class GlobalAppList {
 		return notRunning;
 	}
 
-	private List<Application> toSendApps() {
-		List<Application> running = getRunningApps();
-		return running;
-	}
-
+	/*
+	 * private List<Application> toSendApps() { List<Application> running =
+	 * getRunningApps(); return running; }
+	 */
 	/**
 	 * Makes a copy of the given app list, but grabs each Application reference
 	 * from the global app list. In this way, any modification to an Application
@@ -325,25 +325,36 @@ public class GlobalAppList {
 	public Map<Application, AppState> getAppStateMap() {
 		Map<Application, AppState> appStateMap = new HashMap<Application, AppState>();
 
-		if (!this.getActive().isEmpty())
-			appStateMap.put(this.getActive().get(0), AppState.ACTIVE);
+		// if (!this.getActive().isEmpty())
+		// appStateMap.put(this.getActive().get(0), AppState.ACTIVE);
 
-		for (Application app : this.getBackgroundApps())
+		for (Application app : this.getActive())
 			if (!appStateMap.containsKey(app))
-				appStateMap.put(app, AppState.BACKGROUND);
-		for (Application app : this.getCachedApps())
-			if (!appStateMap.containsKey(app))
-				appStateMap.put(app, AppState.CACHED);
+				appStateMap.put(app, AppState.ACTIVE);
+
 		for (Application app : this.getForegroundApps())
 			if (!appStateMap.containsKey(app))
 				appStateMap.put(app, AppState.FOREGROUND);
+
+		for (Application app : this.getBackgroundApps()) {
+			if (!appStateMap.containsKey(app))
+				appStateMap.put(app, AppState.BACKGROUND);
+		}
+
+		for (Application app : this.getCachedApps())
+			if (!appStateMap.containsKey(app))
+				appStateMap.put(app, AppState.CACHED);
+
 		for (Application app : this.getRunningApps())
 			if (!appStateMap.containsKey(app))
 				appStateMap.put(app, AppState.RUNNING);
-		for (Application app : this.allApps)
+
+		for (Application app : this.getNotRunningApps())
 			if (!appStateMap.containsKey(app))
 				appStateMap.put(app, AppState.NOTRUNNING);
 
+//		Log.i(HmnLog.HMN_LOG_TAG, "APPSTATEMAP!!!!!!!!!!!!!!!!!!!\n"
+//				+ appStateMap.toString());
 		return appStateMap;
 	}
 

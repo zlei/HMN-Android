@@ -34,8 +34,7 @@ import edu.wpi.cs.peds.hmn.stats.costbenefit.CostBenefitActivity;
  * 
  */
 public class ApplicationDetailViewActivity extends Activity {
-	Application chosenApp = null;
-	public static int uid = -1;
+	public static Application chosenApp = null;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -59,6 +58,7 @@ public class ApplicationDetailViewActivity extends Activity {
 		// It may make more sense to make chosenApp a public static variable...
 		Intent requestedAppIntent = getIntent();
 		byte[] objectBytes = requestedAppIntent.getByteArrayExtra("uid");
+		int uid = -1;
 		// Receives the transmitted UID
 		ObjectInputStream ois;
 		try {
@@ -105,6 +105,7 @@ public class ApplicationDetailViewActivity extends Activity {
 		}
 	}
 
+	
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.menu_refresh, menu);

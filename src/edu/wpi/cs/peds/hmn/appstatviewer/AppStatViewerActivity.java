@@ -30,7 +30,6 @@ import edu.wpi.cs.peds.hmn.appstatviewer.sorting.SortOrder;
 import edu.wpi.cs.peds.hmn.log.HmnLog;
 import edu.wpi.cs.peds.hmn.stats.apps.Application;
 import edu.wpi.cs.peds.hmn.stats.apps.GlobalAppList;
-import edu.wpi.cs.peds.hmn.stats.costbenefit.OverallBenefitDetailActivity;
 
 /**
  * The view of the app list shown to the user

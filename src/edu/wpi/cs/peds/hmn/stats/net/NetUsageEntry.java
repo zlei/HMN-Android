@@ -50,16 +50,17 @@ public class NetUsageEntry extends NetworkStats implements Serializable {
 	public JSONObject toJSON() throws JSONException
 	{
 		JSONObject json = super.toJSON();
-		json.put("timestamp",currentDateStamp.getTime());
+//		json.put("timestamp",currentDateStamp.getTime());
 		json.put("connection",connectionType.toString().toLowerCase(Locale.ENGLISH));  // needs to be updated to support all types
 		return json;
 	}
 	
-	public JSONObject apptoJSON() throws JSONException
+/*	public JSONObject apptoJSON() throws JSONException
 	{
 		JSONObject json = super.toJSON();
 		json.put("sent", appTransmittedBytes);
 		json.put("received", appReceivedBytes);
 		return json;
 	}
+	*/
 }

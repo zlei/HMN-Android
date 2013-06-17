@@ -46,7 +46,7 @@ public class LiveData {
 	// its UID
 	private static float totalData() {
 		float y = 0;
-		currentUid = ApplicationDetailViewActivity.uid;
+		currentUid = ApplicationDetailViewActivity.chosenApp.uid;
 		totalafter = TrafficStats.getUidRxBytes(currentUid)
 				+ TrafficStats.getUidTxBytes(currentUid);
 		// use unit KB
@@ -58,7 +58,7 @@ public class LiveData {
 
 	private static float uploadData() {
 		float y = 0;
-		currentUid = ApplicationDetailViewActivity.uid;
+		currentUid = ApplicationDetailViewActivity.chosenApp.uid;
 		uploadafter = TrafficStats.getUidTxBytes(currentUid);
 		// use unit KB
 		y = (uploadafter - uploadbefore) / 1024;
@@ -69,7 +69,7 @@ public class LiveData {
 
 	private static float downloadData() {
 		float y = 0;
-		currentUid = ApplicationDetailViewActivity.uid;
+		currentUid = ApplicationDetailViewActivity.chosenApp.uid;
 		downloadafter = TrafficStats.getUidRxBytes(currentUid);
 		// use unit KB
 		y = (downloadafter - downloadbefore) / 1024;

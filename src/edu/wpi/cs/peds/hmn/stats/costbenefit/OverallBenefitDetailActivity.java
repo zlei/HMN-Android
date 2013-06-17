@@ -50,7 +50,7 @@ public class OverallBenefitDetailActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_overall_benefit_detail);
-		currentUid = ApplicationDetailViewActivity.uid;
+		currentUid = ApplicationDetailViewActivity.chosenApp.uid;
 		chosenApp = GlobalAppList.getInstance().getApp(currentUid);
 		text = (TextView) findViewById(R.id.overallBenefitView);
 		client = new DefaultHttpClient();

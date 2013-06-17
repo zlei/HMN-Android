@@ -9,9 +9,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.util.Log;
 import edu.wpi.cs.peds.hmn.appcollector.AppState;
-import edu.wpi.cs.peds.hmn.log.HmnLog;
 
 /**
  * A special HashMap that initializes itself with a default duration of 0 for
@@ -58,7 +56,7 @@ public class AppStateMap extends HashMap<AppState, Long> {
 			Long duration = this.get(state);
 			if (duration > 0) {
 				json.put(state.toJSONName(), duration);
-				Log.i(HmnLog.HMN_LOG_TAG, ("State!") + state);
+//				Log.i(HmnLog.HMN_LOG_TAG, ("State!") + state);
 				json.put("currentState", state.toJSONName());
 				json.put("timestamp", timestamp);
 			}

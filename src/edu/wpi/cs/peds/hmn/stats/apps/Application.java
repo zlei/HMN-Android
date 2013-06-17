@@ -6,7 +6,6 @@ package edu.wpi.cs.peds.hmn.stats.apps;
 import java.io.Serializable;
 import java.util.Date;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -14,8 +13,10 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.util.Log;
 import edu.wpi.cs.peds.hmn.appcollector.AppState;
 import edu.wpi.cs.peds.hmn.appcollector.NetDevice;
+import edu.wpi.cs.peds.hmn.log.HmnLog;
 import edu.wpi.cs.peds.hmn.stats.PowerStats;
 import edu.wpi.cs.peds.hmn.stats.costbenefit.StateChanges;
 import edu.wpi.cs.peds.hmn.stats.net.NetUsageEntry;
@@ -50,7 +51,7 @@ public class Application implements Serializable {
 	public PowerStats powerStats;
 	public NetDevice lastConnectionType;
 	public AppStateMap appStateMap;
-	public static AppState currentState = null;
+	public AppState currentState = null;
 	public StateChanges stateChanges;
 
 	public Float userRating = 0.0f;
@@ -103,6 +104,7 @@ public class Application implements Serializable {
 	private void updateState(AppState appState) {
 		long currentTime = new Date().getTime();
 		if (currentState == null) {
+//			Log.i(HmnLog.HMN_LOG_TAG, "UPDATESTATE: " + appState);
 			currentState = appState;
 			lastStateUpdateTime = currentTime;
 		} else {
@@ -203,7 +205,7 @@ public class Application implements Serializable {
 		return netUsage.networkMonitorInfo();
 	}
 
-	public JSONArray getNetUsage() {
+/*	public JSONArray getNetUsage() {
 		try {
 			return netUsage.apptoJSON();
 		} catch (JSONException e) {
@@ -211,7 +213,7 @@ public class Application implements Serializable {
 		}
 		return null;
 	}
-
+*/
 	@Override
 	public boolean equals(Object obj) {
 		Application app = (Application) obj;
@@ -265,12 +267,11 @@ public class Application implements Serializable {
 	public JSONObject toJSON() throws JSONException {
 		JSONObject json = new JSONObject();
 		json.put("name", getName());
-		// json.put("currentState", currentState.toJSONName());
+//		json.put("currentState", currentState.toJSONName());
 		json.put("states", appStateMap.toJSON());
-//		Log.i(HmnLog.HMN_LOG_TAG, netUsage.appUsageInfo());
-		json.put("network", getNetUsage());
+		json.put("network", netUsage.toJSON());
 		json.put("rating", userRating);
-
+		Log.i(HmnLog.HMN_LOG_TAG, json.toString());
 		return json;
 	}
 }
