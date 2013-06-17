@@ -35,7 +35,7 @@
         </receiver>
 
         <activity
-            android:name="edu.wpi.cs.peds.hmn.app.SleekAndroidActivity"
+            android:name="edu.wpi.cs.peds.hmn.app.HMNAndroidActivity"
             android:enabled="true"
             android:exported="true" >
             <intent-filter>

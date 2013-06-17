@@ -1,5 +1,6 @@
 package edu.wpi.cs.peds.hmn.stats.costbenefit;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,7 +11,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 import edu.wpi.cs.peds.hmn.app.R;
+import edu.wpi.cs.peds.hmn.app.HMNAndroidActivity;
 import edu.wpi.cs.peds.hmn.stats.apps.Application;
 import edu.wpi.cs.peds.hmn.stats.apps.GlobalAppList;
 
@@ -53,10 +56,17 @@ public class OverallBenefitFragment extends Fragment {
 		//to show all the detail information retrieved from database
 		Button button = (Button) view.findViewById(R.id.overallbenefitbutton);
 		button.setOnClickListener(new OnClickListener() {
+			@SuppressLint("ShowToast")
 			public void onClick(View arg0) {
 				Intent intent = new Intent();
 				intent.setClass(getActivity(), OverallBenefitDetailActivity.class);
+				if(HMNAndroidActivity.wifiConnected){
 				getActivity().startActivity(intent);
+				}
+				else{
+					Toast.makeText(getActivity().getBaseContext(), "Network error!",
+							Toast.LENGTH_SHORT);
+				}
 			}
 		});
 		

@@ -31,7 +31,7 @@ import edu.wpi.cs.peds.hmn.stats.apps.GlobalAppList;
  * @author Austin Noto-Moniz, austinnoto@wpi.edu
  * @author Zhenhao Lei, zlei@wpi.edu
  */
-public class SleekAndroidActivity extends Activity {
+public class HMNAndroidActivity extends Activity {
 	private Button allAppsButton;
 	private Button activeButton;
 	private Button runningAppsButton;
@@ -118,7 +118,7 @@ public class SleekAndroidActivity extends Activity {
 
 				GlobalAppList.getInstance().setDisplayState(appState);
 				Intent appStatViewerIntent = new Intent(
-						SleekAndroidActivity.this, AppStatViewerActivity.class);
+						HMNAndroidActivity.this, AppStatViewerActivity.class);
 				startActivity(appStatViewerIntent);
 			}
 		});

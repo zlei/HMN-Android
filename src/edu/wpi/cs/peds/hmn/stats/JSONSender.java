@@ -24,7 +24,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.util.Log;
-import edu.wpi.cs.peds.hmn.app.SleekAndroidActivity;
+import edu.wpi.cs.peds.hmn.app.HMNAndroidActivity;
 import edu.wpi.cs.peds.hmn.log.HmnLog;
 import edu.wpi.cs.peds.hmn.stats.apps.GlobalAppList;
 /**
@@ -214,7 +214,7 @@ public class JSONSender extends AsyncTask<String,Object,Boolean>
    
 		boolean success = true;
 	//only send data through WIFI
-		if(!SleekAndroidActivity.wifiConnected){
+		if(!HMNAndroidActivity.wifiConnected){
 			success = false;
 			Log.i(HmnLog.HMN_LOG_TAG,"Not on WIFI! Message NOT successfully sent.");
 			return success;

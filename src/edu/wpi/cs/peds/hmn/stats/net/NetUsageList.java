@@ -14,6 +14,7 @@ import org.json.JSONException;
 
 import android.net.TrafficStats;
 import edu.wpi.cs.peds.hmn.appcollector.AppState;
+import edu.wpi.cs.peds.hmn.appdetailviewer.ApplicationDetailViewActivity;
 
 /**
  * A list of network data which can be formatted nicely for output, as well as
@@ -190,12 +191,11 @@ public class NetUsageList extends LinkedList<NetUsageEntry> {
 		netUsageStr.append("\nTotal Downloaded: ");
 		netUsageStr.append(String.format(getPrettyBytes(getDownloadedBytes)));
 
+		// For the moment, using local usage data, waiting for the usage data
+		// from server!
 		netUsageStr
-				.append(String
-						.format("\nTotal Percentage: %.2f %%",
-								(totalBytes / (float) (TrafficStats
-										.getTotalTxBytes() + TrafficStats
-										.getTotalRxBytes())) * 100));
+				.append(String.format(
+						"\nTotal Percentage: %.2f %%", appPercentage()));
 		return netUsageStr.toString();
 	}
 
@@ -216,23 +216,16 @@ public class NetUsageList extends LinkedList<NetUsageEntry> {
 		return totalBytes;
 	}
 
-/*	public String appUsageInfo() {
-		int currentUid = ApplicationDetailViewActivity.chosenApp.uid;
-		String appNetUsageStr = "";
+	public float appPercentage() {
+		float percentage = (TrafficStats
+				.getUidRxBytes(ApplicationDetailViewActivity.chosenApp.uid) + TrafficStats
+				.getUidRxBytes(ApplicationDetailViewActivity.chosenApp.uid))
+				/ (float) (TrafficStats.getTotalTxBytes() + TrafficStats
+						.getTotalRxBytes()) * 100;
+		return percentage;
 
-		for (NetUsageEntry entry : this)
-			if (entry.networkUsed()) {
-				Float total = (float) (TrafficStats.getUidTxBytes(currentUid) + TrafficStats
-						.getUidRxBytes(currentUid)) / 1024;
-				String totalUsage = total.toString();
-				String downloaded = " downloaded: " + (float) TrafficStats.getUidRxBytes(currentUid) / 1024;
-				String uploaded = " uploaded: " + (float) TrafficStats.getUidTxBytes(currentUid) / 1024;
-				appNetUsageStr = total + uploaded + downloaded;
-				return totalUsage;
-			}
-		return "";
 	}
-*/
+
 	public String entryListDetails() {
 		StringBuilder entryStr = new StringBuilder();
 		for (NetUsageEntry entry : this)
@@ -253,15 +246,13 @@ public class NetUsageList extends LinkedList<NetUsageEntry> {
 		return json;
 	}
 
-/*	public JSONArray apptoJSON() throws JSONException {
-		JSONArray json = new JSONArray();
-
-		for (NetUsageEntry entry : this)
-			if (entry.networkUsed())
-				json.put(entry.apptoJSON());
-		return json;
-	}
-	*/
+	/*
+	 * public JSONArray apptoJSON() throws JSONException { JSONArray json = new
+	 * JSONArray();
+	 * 
+	 * for (NetUsageEntry entry : this) if (entry.networkUsed())
+	 * json.put(entry.apptoJSON()); return json; }
+	 */
 }
 
 /**

@@ -75,7 +75,7 @@ public class Application implements Serializable {
 		lastStateUpdateTime = new Date().getTime();
 
 		cost = (int) (Math.random() * 100);
-		benefit = (int) (Math.random() * 100);
+//		benefit = (int) (Math.random() * 100);
 	}
 
 	/**
@@ -173,6 +173,10 @@ public class Application implements Serializable {
 		 * benefit = CostBenefit.calcBenefit(context); cost =
 		 * CostBenefit.calcCost(context);
 		 */
+		//Using the network usage percentage for the moment, waiting for the usage per app data from server
+//		this.cost = (int) this.netUsage.networkMonitorInfo();
+		//Using the overall rating for the moment
+		this.benefit = (int) (this.dbRating * 20);
 	}
 
 	/**

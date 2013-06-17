@@ -85,7 +85,7 @@ public class OverallBenefitDetailActivity extends Activity {
 			return appinfo;
 		} else {
 			Toast.makeText(OverallBenefitDetailActivity.this, "error",
-					Toast.LENGTH_SHORT);
+					Toast.LENGTH_SHORT).show();
 			return null;
 		}
 	}
