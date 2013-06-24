@@ -47,7 +47,7 @@ public class ApplicationDetailViewActivity extends Activity {
 		final Button button = (Button) findViewById(R.id.costbutton);
 		button.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				Intent appCostBenefitIntent = new Intent(
+			Intent appCostBenefitIntent = new Intent(
 						ApplicationDetailViewActivity.this,
 						CostBenefitActivity.class);
 				startActivity(appCostBenefitIntent);

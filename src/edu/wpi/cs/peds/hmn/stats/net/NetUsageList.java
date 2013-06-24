@@ -217,11 +217,13 @@ public class NetUsageList extends LinkedList<NetUsageEntry> {
 	}
 
 	public float appPercentage() {
-		float percentage = (TrafficStats
+		float percentage = 0.00f;
+		percentage = (float) (TrafficStats
 				.getUidRxBytes(ApplicationDetailViewActivity.chosenApp.uid) + TrafficStats
 				.getUidRxBytes(ApplicationDetailViewActivity.chosenApp.uid))
 				/ (float) (TrafficStats.getTotalTxBytes() + TrafficStats
 						.getTotalRxBytes()) * 100;
+		percentage = Math.abs(percentage);
 		return percentage;
 
 	}

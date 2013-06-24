@@ -45,7 +45,7 @@ public class HMNAndroidActivity extends Activity {
 	// Whether there is a Wi-Fi connection.
 	public static boolean wifiConnected = false;
 	// Whether there is a mobile connection.
-	// private static boolean mobileConnected = false;
+	public static boolean mobileConnected = false;
 	// Whether the display should be refreshed.
 	public static boolean refreshDisplay = false;
 	// Whether hide the system apps
@@ -159,11 +159,10 @@ public class HMNAndroidActivity extends Activity {
 		NetworkInfo activeInfo = connMgr.getActiveNetworkInfo();
 		if (activeInfo != null && activeInfo.isConnected()) {
 			wifiConnected = activeInfo.getType() == ConnectivityManager.TYPE_WIFI;
-			// mobileConnected = activeInfo.getType() ==
-			// ConnectivityManager.TYPE_MOBILE;
+			mobileConnected = activeInfo.getType() == ConnectivityManager.TYPE_MOBILE;
 		} else {
 			wifiConnected = false;
-			// mobileConnected = false;
+			mobileConnected = false;
 		}
 	}
 

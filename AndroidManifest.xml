@@ -63,13 +63,9 @@
         </activity>
         <activity android:name="edu.wpi.cs.peds.hmn.stats.costbenefit.OverallCostGraphActivity" >
         </activity>
-        <activity
-            android:name="edu.wpi.cs.peds.hmn.stats.costbenefit.MyBenefitDetailActivity"
-            android:label="@string/title_activity_my_benefit_detail" >
+        <activity android:name="edu.wpi.cs.peds.hmn.stats.costbenefit.MyBenefitDetailActivity" >
         </activity>
-        <activity
-            android:name="edu.wpi.cs.peds.hmn.stats.costbenefit.OverallBenefitDetailActivity"
-            android:label="@string/title_activity_overall_benefit_detail" >
+        <activity android:name="edu.wpi.cs.peds.hmn.stats.costbenefit.OverallBenefitDetailActivity" >
         </activity>
     </application>
 

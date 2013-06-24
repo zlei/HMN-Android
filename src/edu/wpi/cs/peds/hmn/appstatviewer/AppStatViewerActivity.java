@@ -28,6 +28,7 @@ import edu.wpi.cs.peds.hmn.appcollector.AppCollectorService.MyBinder;
 import edu.wpi.cs.peds.hmn.appdetailviewer.ApplicationDetailViewActivity;
 import edu.wpi.cs.peds.hmn.appstatviewer.sorting.SortOrder;
 import edu.wpi.cs.peds.hmn.log.HmnLog;
+import edu.wpi.cs.peds.hmn.stats.JSONParser;
 import edu.wpi.cs.peds.hmn.stats.apps.Application;
 import edu.wpi.cs.peds.hmn.stats.apps.GlobalAppList;
 
@@ -169,6 +170,9 @@ public class AppStatViewerActivity extends ListActivity implements IObserver {
 		if (id <= Integer.MAX_VALUE && id >= Integer.MIN_VALUE) {
 			int i = (int) id;
 			Application chosenApp = apps.get(i);
+			//Every time clicking to choose app, retrieve the information of this app from server
+			JSONParser jsonParser = new JSONParser();
+			jsonParser.getFromServer(chosenApp);
 
 			// Sends the UID for lookup
 			Intent detailIntent = new Intent(this,

@@ -40,23 +40,28 @@ public class AppStateMap extends HashMap<AppState, Long> {
 		return appStateMapStr.toString();
 	}
 
-/*	public boolean sendCurrentState(){
-		for (AppState state : this.keySet()){
-			if (state.toString().equals("Not running")){
-				return false;
-			}
-		}
-		return true;
-	}
-*/	
-	public JSONObject toJSONObj() throws JSONException {
+	/*
+	 * public boolean sendCurrentState(){ for (AppState state : this.keySet()){
+	 * if (state.toString().equals("Not running")){ return false; } } return
+	 * true; }
+	 */
+	public JSONObject toJSONState() throws JSONException {
 		JSONObject json = new JSONObject();
-
 		for (AppState state : this.keySet()) {
 			Long duration = this.get(state);
 			if (duration > 0) {
 				json.put(state.toJSONName(), duration);
-//				Log.i(HmnLog.HMN_LOG_TAG, ("State!") + state);
+			}
+		}
+		return json;
+	}
+
+	public JSONObject toJSONObj() throws JSONException {
+		JSONObject json = new JSONObject();
+		for (AppState state : this.keySet()) {
+			Long duration = this.get(state);
+			if (duration > 0) {
+				json.put("stateTime", toJSONState());
 				json.put("currentState", state.toJSONName());
 				json.put("timestamp", timestamp);
 			}

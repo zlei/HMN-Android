@@ -56,7 +56,7 @@ public class AppCollectorService extends Service implements IObservable {
 	/**
 	 * The data gathering task, which is set to run every 2 seconds.
 	 */
-	private final long dataGatheringPeriod = 2000;
+	private final long dataGatheringPeriod = 5000;
 	private Runnable dataGatheringTask = new Runnable() {
 		public void run() {
 			Log.i(HmnLog.HMN_LOG_TAG, "Collecting data.");
@@ -72,7 +72,7 @@ public class AppCollectorService extends Service implements IObservable {
 	/**
 	 * The data sending task, which is set to run every 30 seconds.
 	 */
-	private final long dataSendingPeriod = 5000;	
+	private final long dataSendingPeriod = 30000;	
 	private Runnable dataSendingTask = new Runnable() {
 		public void run() {
 			Log.i(HmnLog.HMN_LOG_TAG, "Transmitting data.");

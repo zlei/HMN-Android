@@ -13,10 +13,9 @@ import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.util.Log;
 import edu.wpi.cs.peds.hmn.appcollector.AppState;
 import edu.wpi.cs.peds.hmn.appcollector.NetDevice;
-import edu.wpi.cs.peds.hmn.log.HmnLog;
+import edu.wpi.cs.peds.hmn.stats.JSONParser;
 import edu.wpi.cs.peds.hmn.stats.PowerStats;
 import edu.wpi.cs.peds.hmn.stats.costbenefit.StateChanges;
 import edu.wpi.cs.peds.hmn.stats.net.NetUsageEntry;
@@ -53,6 +52,7 @@ public class Application implements Serializable {
 	public AppStateMap appStateMap;
 	public AppState currentState = null;
 	public StateChanges stateChanges;
+	public JSONParser jsonParser;
 
 	public Float userRating = 0.0f;
 	public Float dbRating = 0.0f;
@@ -71,6 +71,7 @@ public class Application implements Serializable {
 		powerStats = new PowerStats();
 		appStateMap = new AppStateMap();
 		stateChanges = new StateChanges();
+		jsonParser = new JSONParser();
 
 		lastStateUpdateTime = new Date().getTime();
 
@@ -176,6 +177,7 @@ public class Application implements Serializable {
 		//Using the network usage percentage for the moment, waiting for the usage per app data from server
 //		this.cost = (int) this.netUsage.networkMonitorInfo();
 		//Using the overall rating for the moment
+//		jsonParser.getFromServer(this);
 		this.benefit = (int) (this.dbRating * 20);
 	}
 
@@ -228,7 +230,32 @@ public class Application implements Serializable {
 	public String toString() {
 		return this.getName();
 	}
-	
+
+	//show the general benefit data of an app, should be retrieved from database
+	public String allBenefitInfo(){
+		StringBuilder appStr = new StringBuilder();
+		appStr.append(String.format("Name:" + this.getName()));
+		appStr.append(String.format("\nUID: " + this.uid));
+		appStr.append(String.format("\nUser Rating: " + this.userRating));
+		appStr.append(String.format("\nOverall Rating: " + this.dbRating));
+//		appStr.append(String.format("Cost: ", cost));
+		appStr.append(String.format("\nBenefit: " + this.benefit));
+
+		return appStr.toString();
+	}
+
+	//show the general benefit data of an app, should be retrieved from database
+	public String allCostInfo(){
+		StringBuilder appStr = new StringBuilder();
+		appStr.append(String.format("Name:" + this.getName()));
+		appStr.append(String.format("\nUID: " + this.uid));
+		appStr.append(String.format("\nUser Rating: " + this.userRating));
+		appStr.append(String.format("\nOverall Rating: " + this.dbRating));
+//		appStr.append(String.format("Cost: ", cost));
+		appStr.append(String.format("\nBenefit: " + this.benefit));
+
+		return appStr.toString();
+	}
 	public String detailedInfo() {
 		StringBuilder appStr = new StringBuilder();
 
@@ -275,7 +302,7 @@ public class Application implements Serializable {
 		json.put("states", appStateMap.toJSON());
 		json.put("network", netUsage.toJSON());
 		json.put("rating", userRating);
-		Log.i(HmnLog.HMN_LOG_TAG, json.toString());
+//		Log.i(HmnLog.HMN_LOG_TAG, json.toString());
 		return json;
 	}
 }
