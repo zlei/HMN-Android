@@ -38,6 +38,10 @@
             android:name="edu.wpi.cs.peds.hmn.app.HMNAndroidActivity"
             android:enabled="true"
             android:exported="true" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.ParentActivity" />
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -58,6 +62,9 @@
         <activity android:name="edu.wpi.cs.peds.hmn.appstatviewer.AppStatViewerActivity" >
         </activity>
         <activity android:name="edu.wpi.cs.peds.hmn.stats.costbenefit.CostBenefitActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.wpi.cs.peds.hmn.app.HMNAndroidActivity" />
         </activity>
         <activity android:name="edu.wpi.cs.peds.hmn.stats.costbenefit.MyCostGraphActivity" >
         </activity>

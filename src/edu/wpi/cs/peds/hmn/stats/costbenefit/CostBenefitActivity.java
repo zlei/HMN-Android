@@ -2,13 +2,12 @@ package edu.wpi.cs.peds.hmn.stats.costbenefit;
 
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.NavUtils;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import edu.wpi.cs.peds.hmn.app.R;
 import edu.wpi.cs.peds.hmn.appdetailviewer.ApplicationDetailViewActivity;
@@ -22,10 +21,12 @@ public class CostBenefitActivity extends FragmentActivity {
 	ViewPager mPager;
 
 	int currentUid;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_costbenefit);
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 		currentUid = ApplicationDetailViewActivity.chosenApp.uid;
 
 		/** Getting a reference to action bar of this activity */
@@ -100,8 +101,8 @@ public class CostBenefitActivity extends FragmentActivity {
 	}
 
 	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater inflater = getMenuInflater();
-		inflater.inflate(R.menu.menu_refresh, menu);
+		// MenuInflater inflater = getMenuInflater();
+		// inflater.inflate(R.menu.menu_refresh, menu);
 		return true;
 	}
 
@@ -109,17 +110,18 @@ public class CostBenefitActivity extends FragmentActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-		case R.id.action_refresh:
-			Intent intent = getIntent();
-			finish();
-			startActivity(intent);
+		case android.R.id.home:
+			NavUtils.navigateUpFromSameTask(this);
+			// case R.id.action_refresh:
+			// Intent intent = getIntent();
+			// finish();
+			// startActivity(intent);
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
 		}
 	}
 
-	@Override
 	protected void onPause() {
 		super.onPause();
 	}

@@ -47,7 +47,7 @@ public class ApplicationDetailViewActivity extends Activity {
 		final Button button = (Button) findViewById(R.id.costbutton);
 		button.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-			Intent appCostBenefitIntent = new Intent(
+				Intent appCostBenefitIntent = new Intent(
 						ApplicationDetailViewActivity.this,
 						CostBenefitActivity.class);
 				startActivity(appCostBenefitIntent);
@@ -99,13 +99,11 @@ public class ApplicationDetailViewActivity extends Activity {
 							chosenApp.updateRating(newRating);
 						}
 					});
-
 			RatingBar dbRatingBar = (RatingBar) findViewById(R.id.dbRating);
 			dbRatingBar.setRating(chosenApp.dbRating);
 		}
 	}
 
-	
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater inflater = getMenuInflater();
 		inflater.inflate(R.menu.menu_refresh, menu);
@@ -115,11 +113,17 @@ public class ApplicationDetailViewActivity extends Activity {
 	// Handles the user's menu selection.
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
+
 		switch (item.getItemId()) {
 		case R.id.action_refresh:
-			Intent intent = getIntent();
-			finish();
-			startActivity(intent);
+			TextView appDetailsView = (TextView) findViewById(R.id.txt_app_info);
+			String appDetails = chosenApp.detailedInfo();
+			RatingBar dbRatingBar = (RatingBar) findViewById(R.id.dbRating);
+			dbRatingBar.setRating(chosenApp.dbRating);
+			appDetailsView.setText(appDetails);
+			// Intent intent = getIntent();
+			// finish();
+			// startActivity(intent);
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);

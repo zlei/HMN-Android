@@ -170,7 +170,8 @@ public class AppStatViewerActivity extends ListActivity implements IObserver {
 		if (id <= Integer.MAX_VALUE && id >= Integer.MIN_VALUE) {
 			int i = (int) id;
 			Application chosenApp = apps.get(i);
-			//Every time clicking to choose app, retrieve the information of this app from server
+			// Every time clicking to choose app, retrieve the information of
+			// this app from server
 			JSONParser jsonParser = new JSONParser();
 			jsonParser.getFromServer(chosenApp);
 
@@ -194,10 +195,21 @@ public class AppStatViewerActivity extends ListActivity implements IObserver {
 		}
 	}
 
+/*	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			NavUtils.navigateUpFromSameTask(this);
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
+	}
+*/
 	/*
 	 * public boolean onCreateOptionsMenu(Menu menu) { MenuInflater inflater =
 	 * getMenuInflater(); inflater.inflate(R.menu.activity_app_list, menu);
 	 * return true; }
+	 * 
 	 * 
 	 * // Handles the user's menu selection.
 	 * 
