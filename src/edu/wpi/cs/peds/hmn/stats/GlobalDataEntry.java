@@ -27,7 +27,7 @@ public class GlobalDataEntry {
 	private PowerStats powerStats;
 	private int cpuStats;
 	private NetworkStateMap networkStateMap = new NetworkStateMap();
-	private long timestamp = 0;
+	private static long timestamp = 0;
 
 	/**
 	 * Creates a new snapshot of some global phone stats.
@@ -35,13 +35,25 @@ public class GlobalDataEntry {
 	 * @param context
 	 *            the context from which to gather these stats.
 	 */
+
 	public GlobalDataEntry(Context context) {
-		timestamp = System.currentTimeMillis();
+		timestamp = getGlobalTimestamp();
 		cpuStats = (int) (getCPUStats() * 100);
 		gatherPowerStats(context);
 		gatherNetworkStats();
 	}
 
+	public GlobalDataEntry() {
+	}
+
+	//Globalize all timestamp in every sending
+	public void setGlobalTimestamp(){
+		timestamp = System.currentTimeMillis();
+	}
+	
+	public long getGlobalTimestamp(){
+		return timestamp;
+	}
 	/**
 	 * Takes a snapshot of the phone's power stats.
 	 * 

@@ -26,6 +26,7 @@ import edu.wpi.cs.peds.hmn.appstatviewer.IObservable;
 import edu.wpi.cs.peds.hmn.appstatviewer.IObserver;
 import edu.wpi.cs.peds.hmn.log.HmnLog;
 import edu.wpi.cs.peds.hmn.stats.GlobalDataCollector;
+import edu.wpi.cs.peds.hmn.stats.GlobalDataEntry;
 import edu.wpi.cs.peds.hmn.stats.JSONSender;
 import edu.wpi.cs.peds.hmn.stats.apps.Application;
 import edu.wpi.cs.peds.hmn.stats.apps.GlobalAppList;
@@ -52,15 +53,13 @@ public class AppCollectorService extends Service implements IObservable {
 	private ConnectivityManager connectivityManager = null;
 	private final IBinder binder = new MyBinder();
 	BroadcastReceiver receiver;
-
 	/**
 	 * The data gathering task, which is set to run every 2 seconds.
 	 */
-	private final long dataGatheringPeriod = 5000;
+	private final long dataGatheringPeriod = 2000;
 	private Runnable dataGatheringTask = new Runnable() {
 		public void run() {
 			Log.i(HmnLog.HMN_LOG_TAG, "Collecting data.");
-
 			GlobalDataCollector.getInstance().gatherStats(
 					getApplicationContext());
 			notifyObservers();
@@ -72,13 +71,13 @@ public class AppCollectorService extends Service implements IObservable {
 	/**
 	 * The data sending task, which is set to run every 30 seconds.
 	 */
-	private final long dataSendingPeriod = 30000;	
+	private final long dataSendingPeriod = 7000;
 	private Runnable dataSendingTask = new Runnable() {
+		GlobalDataEntry globalDataEntry = new GlobalDataEntry();
 		public void run() {
 			Log.i(HmnLog.HMN_LOG_TAG, "Transmitting data.");
-
+			globalDataEntry.setGlobalTimestamp();
 			JSONSender.post();
-
 			handler.postDelayed(this, dataSendingPeriod);
 		}
 	};

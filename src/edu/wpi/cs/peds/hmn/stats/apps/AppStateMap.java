@@ -10,6 +10,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import edu.wpi.cs.peds.hmn.appcollector.AppState;
+import edu.wpi.cs.peds.hmn.stats.GlobalDataEntry;
 
 /**
  * A special HashMap that initializes itself with a default duration of 0 for
@@ -22,10 +23,8 @@ import edu.wpi.cs.peds.hmn.appcollector.AppState;
 public class AppStateMap extends HashMap<AppState, Long> {
 	// generated serial version
 	private static final long serialVersionUID = -8797161514386626838L;
-	private long timestamp = 0;
 
 	public AppStateMap() {
-		timestamp = System.currentTimeMillis();
 		for (AppState type : AppState.values())
 			this.put(type, 0L);
 	}
@@ -58,12 +57,13 @@ public class AppStateMap extends HashMap<AppState, Long> {
 
 	public JSONObject toJSONObj() throws JSONException {
 		JSONObject json = new JSONObject();
+		GlobalDataEntry globalDataEntry = new GlobalDataEntry();
 		for (AppState state : this.keySet()) {
 			Long duration = this.get(state);
 			if (duration > 0) {
 				json.put("stateTime", toJSONState());
 				json.put("currentState", state.toJSONName());
-				json.put("timestamp", timestamp);
+				json.put("timestamp", globalDataEntry.getGlobalTimestamp());
 			}
 		}
 		return json;

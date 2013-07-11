@@ -77,7 +77,6 @@ public class GlobalDataCollector {
 		info.put("version", Build.VERSION.RELEASE);
 		info.put("device",
 				String.format("%s %s", Build.MANUFACTURER, Build.MODEL));
-
 		return info;
 	}
 
@@ -102,9 +101,12 @@ public class GlobalDataCollector {
 
 		json.put("id", Build.SERIAL);
 		json.put("info", new JSONObject(getPhoneInfo()));
+
 		JSONArray statsArray = new JSONArray();
-		for (GlobalDataEntry dataEntry : dataEntries)
-			statsArray.put(dataEntry.toJSON());
+		for (GlobalDataEntry dataEntry : dataEntries){
+//		Log.i(HmnLog.HMN_LOG_TAG, "!!!!!!!!!!!!!!!!DataEntry:  " + dataEntry.toString());
+		statsArray.put(dataEntry.toJSON());
+		}
 		json.put("stats", statsArray);
 		// Log.i(HmnLog.HMN_LOG_TAG, json.toString());
 		return json;
