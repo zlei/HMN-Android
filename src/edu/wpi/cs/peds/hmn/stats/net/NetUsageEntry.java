@@ -29,7 +29,7 @@ public class NetUsageEntry extends NetworkStats implements Serializable {
 	private final SimpleDateFormat dateFormatter = new SimpleDateFormat("MM-dd-yyyy hh:mm:ss.SSSa",Locale.US);
 	public NetDevice connectionType;
 	public Date currentDateStamp;
-
+	private long timestamp;
 	public NetUsageEntry(NetDevice currentNetEnvironment, NetworkStats newStats)
 	{
 		super(newStats);
@@ -37,6 +37,9 @@ public class NetUsageEntry extends NetworkStats implements Serializable {
 		this.currentDateStamp = new Date(System.currentTimeMillis());
 	}
 
+	public void setTimestamp(long timestamp){
+		this.timestamp = timestamp;
+	}
 	@Override
 	public String toString()
 	{
@@ -50,17 +53,9 @@ public class NetUsageEntry extends NetworkStats implements Serializable {
 	public JSONObject toJSON() throws JSONException
 	{
 		JSONObject json = super.toJSON();
-//		json.put("timestamp",currentDateStamp.getTime());
-		json.put("connection",connectionType.toString().toLowerCase(Locale.ENGLISH));  // needs to be updated to support all types
+		json.put("timestamp", timestamp);
+		json.put("connection", connectionType.toString().toLowerCase(Locale.ENGLISH));  // needs to be updated to support all types
 		return json;
 	}
 	
-/*	public JSONObject apptoJSON() throws JSONException
-	{
-		JSONObject json = super.toJSON();
-		json.put("sent", appTransmittedBytes);
-		json.put("received", appReceivedBytes);
-		return json;
-	}
-	*/
 }

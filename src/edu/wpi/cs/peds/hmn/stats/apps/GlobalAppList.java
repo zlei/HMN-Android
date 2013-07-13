@@ -105,17 +105,10 @@ public class GlobalAppList {
 		this.activityManager = activityManager;
 		allApps = AppCollector.getAllApps(packageManager);
 		systemApps = findSystemApps();
-		// Log.i(HmnLog.HMN_LOG_TAG, "INITIATE APPS!!!!!!!!!!!");
 		if (!HMNAndroidActivity.hideSystemApp) {
 			allApps.removeAll(systemApps);
 		}
 		// get to send app list, can choose which kind of apps to be sent
-
-		// toSendApps = getActive();
-		// toSendApps = getForegroundApps();
-		// toSendApps = getBackgroundApps();
-		// toSendApps = getCachedApps();
-		// toSendApps = getNotRunningApps();
 
 		toSendApps = getRunningApps();
 		displayedApps = allApps;
@@ -323,8 +316,6 @@ public class GlobalAppList {
 	public Map<Application, AppState> getAppStateMap() {
 		Map<Application, AppState> appStateMap = new HashMap<Application, AppState>();
 
-		// if (!this.getActive().isEmpty())
-		// appStateMap.put(this.getActive().get(0), AppState.ACTIVE);
 
 		for (Application app : this.getActive())
 			if (!appStateMap.containsKey(app))
@@ -351,8 +342,6 @@ public class GlobalAppList {
 			if (!appStateMap.containsKey(app))
 				appStateMap.put(app, AppState.NOTRUNNING);
 
-//		Log.i(HmnLog.HMN_LOG_TAG, "APPSTATEMAP!!!!!!!!!!!!!!!!!!!\n"
-//				+ appStateMap.toString());
 		return appStateMap;
 	}
 

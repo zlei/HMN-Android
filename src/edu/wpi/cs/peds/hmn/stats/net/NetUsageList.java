@@ -241,20 +241,12 @@ public class NetUsageList extends LinkedList<NetUsageEntry> {
 
 	public JSONArray toJSON() throws JSONException {
 		JSONArray json = new JSONArray();
-
 		for (NetUsageEntry entry : this)
 			if (entry.networkUsed())
 				json.put(entry.toJSON());
 		return json;
 	}
 
-	/*
-	 * public JSONArray apptoJSON() throws JSONException { JSONArray json = new
-	 * JSONArray();
-	 * 
-	 * for (NetUsageEntry entry : this) if (entry.networkUsed())
-	 * json.put(entry.apptoJSON()); return json; }
-	 */
 }
 
 /**

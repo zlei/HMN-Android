@@ -10,6 +10,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Context;
+import android.util.Log;
+import edu.wpi.cs.peds.hmn.appcollector.AppCollectorService;
+import edu.wpi.cs.peds.hmn.log.HmnLog;
 import edu.wpi.cs.peds.hmn.stats.apps.Application;
 import edu.wpi.cs.peds.hmn.stats.apps.GlobalAppList;
 import edu.wpi.cs.peds.hmn.stats.net.NetUsageEntry;
@@ -27,7 +30,7 @@ public class GlobalDataEntry {
 	private PowerStats powerStats;
 	private int cpuStats;
 	private NetworkStateMap networkStateMap = new NetworkStateMap();
-	private static long timestamp = 0;
+	private long timestamp = 0;
 
 	/**
 	 * Creates a new snapshot of some global phone stats.
@@ -37,7 +40,7 @@ public class GlobalDataEntry {
 	 */
 
 	public GlobalDataEntry(Context context) {
-		timestamp = getGlobalTimestamp();
+		timestamp = AppCollectorService.timestamp;
 		cpuStats = (int) (getCPUStats() * 100);
 		gatherPowerStats(context);
 		gatherNetworkStats();
@@ -46,14 +49,16 @@ public class GlobalDataEntry {
 	public GlobalDataEntry() {
 	}
 
-	//Globalize all timestamp in every sending
-	public void setGlobalTimestamp(){
+	// Globalize all timestamp in every sending
+	public void setGlobalTimestamp() {
 		timestamp = System.currentTimeMillis();
+		Log.i(HmnLog.HMN_LOG_TAG, "System timestamp!!!!!!" + timestamp);
 	}
-	
-	public long getGlobalTimestamp(){
+
+	public long getGlobalTimestamp() {
 		return timestamp;
 	}
+
 	/**
 	 * Takes a snapshot of the phone's power stats.
 	 * 

@@ -40,6 +40,7 @@
 		"networkData": {
 			"type": "object",
 			"properties": {
+				"timestamp": {"description": "The time this data was collected, in miliseconds from epoch", "type": "number"},	
 				"sent": {"description": "Data sent, in bytes", "type": "number"},
 				"received": {"description": "Data received, in bytes", "type": "number"}
 			}
@@ -128,7 +129,8 @@
 			"required": ["name"],
 			"properties": {
 				"name": {"type": "string"},
-				
+
+
 				"bundleId": {
 					"description": "App Store id corresponding to the app's name",
 					"type": "string"
@@ -154,14 +156,14 @@
 					}
 				},
 				
-				"network": {
-					"type": "object",
-					"properties": {
-						"sent": {"description": "Data sent, in bytes", "type": "number"},
-						"received": {"description": "Data received, in bytes", "type": "number"}
-					}
+				"network": 
+					"type": "array",
+						"items": {
+							"description": "App's network usage",
+							"$ref": "#/definitions/networkEntry"
+						}
 				},
-				
+			
 				"logs": {
 					"type": "array",
 					"items": {

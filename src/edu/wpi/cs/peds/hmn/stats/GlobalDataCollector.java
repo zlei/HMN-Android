@@ -24,6 +24,7 @@ import edu.wpi.cs.peds.hmn.stats.apps.GlobalAppList;
  * instance, which can be accessed from anywhere.
  * 
  * @author Austin Noto-Moniz, austinnoto@wpi.edu
+ * @author Zhenhao Lei, zlei@wpi.edu
  * 
  */
 public class GlobalDataCollector {
@@ -59,7 +60,6 @@ public class GlobalDataCollector {
 		Map<Application, AppState> appStateMap = GlobalAppList.getInstance()
 				.getAppStateMap();
 		for (Application app : GlobalAppList.getInstance().getAllApps()) {
-			// Log.i(HmnLog.HMN_LOG_TAG, app + ":   " + appStateMap.get(app));
 			app.updateStats(context, appStateMap.get(app));
 		}
 		dataEntries.add(new GlobalDataEntry(context));
@@ -103,12 +103,9 @@ public class GlobalDataCollector {
 		json.put("info", new JSONObject(getPhoneInfo()));
 
 		JSONArray statsArray = new JSONArray();
-		for (GlobalDataEntry dataEntry : dataEntries){
-//		Log.i(HmnLog.HMN_LOG_TAG, "!!!!!!!!!!!!!!!!DataEntry:  " + dataEntry.toString());
-		statsArray.put(dataEntry.toJSON());
-		}
+		for (GlobalDataEntry dataEntry : dataEntries)
+			statsArray.put(dataEntry.toJSON());
 		json.put("stats", statsArray);
-		// Log.i(HmnLog.HMN_LOG_TAG, json.toString());
 		return json;
 	}
 }
