@@ -110,7 +110,8 @@ public class GlobalAppList {
 		}
 		// get to send app list, can choose which kind of apps to be sent
 
-		toSendApps = getRunningApps();
+		toSendApps = getForegroundApps();
+//		toSendApps = getRunningApps();
 		displayedApps = allApps;
 	}
 

@@ -123,6 +123,12 @@ public class GlobalDataEntry {
 		return 0;
 	}
 
+	public JSONObject CPUtoJSON() throws JSONException {
+		JSONObject json = new JSONObject();
+		json.put("cpuUsage", cpuStats);
+		return json;
+	}
+
 	/**
 	 * Converts this object into a JSON object.
 	 * 
@@ -135,7 +141,7 @@ public class GlobalDataEntry {
 
 		dataEntry.put("timestamp", timestamp);
 		dataEntry.put("network", networkStateMap.toJSON());
-		dataEntry.put("cpu", cpuStats);
+		dataEntry.put("cpu", CPUtoJSON());
 		dataEntry.put("power", powerStats.toJSON());
 
 		return dataEntry;
