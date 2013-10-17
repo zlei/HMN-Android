@@ -47,7 +47,6 @@ public class AppStatViewerActivity extends ListActivity implements IObserver {
 			observer = componentToRegister;
 			observedService = observableService;
 		}
-
 		public void onServiceConnected(ComponentName name, IBinder service) {
 			observedService = ((MyBinder) service).getService();
 			observedService.addObserver(observer);

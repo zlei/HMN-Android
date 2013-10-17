@@ -30,11 +30,32 @@ public class AppCollector {
 	 *            used to query the device
 	 * @return a list of Application objects representing all installed apps.
 	 */
+
+	private static int allApp = 0;
+	private static int sysApp = 1;
+	private static int nonSysApp = 2;
+
 	public static List<Application> getAllApps(PackageManager packageManager) {
 		List<PackageInfo> packageInfoList = packageManager
 				.getInstalledPackages(PackageManager.GET_META_DATA);
 		List<Application> appList = appListFromPackageList(packageInfoList,
-				packageManager);
+				packageManager, allApp);
+		return sortedApplicationList(appList);
+	}
+
+	public static List<Application> getSysApps(PackageManager packageManager) {
+		List<PackageInfo> packageInfoList = packageManager
+				.getInstalledPackages(PackageManager.GET_META_DATA);
+		List<Application> appList = appListFromPackageList(packageInfoList,
+				packageManager, sysApp);
+		return sortedApplicationList(appList);
+	}
+
+	public static List<Application> getNonSysApps(PackageManager packageManager) {
+		List<PackageInfo> packageInfoList = packageManager
+				.getInstalledPackages(PackageManager.GET_META_DATA);
+		List<Application> appList = appListFromPackageList(packageInfoList,
+				packageManager, nonSysApp);
 		return sortedApplicationList(appList);
 	}
 
@@ -78,7 +99,7 @@ public class AppCollector {
 				new ArrayList<String>(packageNames), packageManager,
 				activityManager);
 		List<Application> appList = appListFromPackageList(packageInfoList,
-				packageManager);
+				packageManager, allApp);
 		return sortedApplicationList(appList);
 	}
 
@@ -101,7 +122,7 @@ public class AppCollector {
 				new ArrayList<String>(packageNames), packageManager,
 				activityManager);
 		List<Application> appList = appListFromPackageList(packageInfoList,
-				packageManager);
+				packageManager, allApp);
 		return sortedApplicationList(appList);
 	}
 
@@ -148,7 +169,7 @@ public class AppCollector {
 				new ArrayList<String>(packageNames), packageManager,
 				activityManager);
 		List<Application> appList = appListFromPackageList(packageInfoList,
-				packageManager);
+				packageManager, allApp);
 		return sortedApplicationList(appList);
 	}
 
@@ -198,14 +219,30 @@ public class AppCollector {
 	 * @return each PackageInfo converted into an Application
 	 */
 	private static List<Application> appListFromPackageList(
-			List<PackageInfo> packageInfoList, PackageManager packageManager) {
+			List<PackageInfo> packageInfoList, PackageManager packageManager,
+			int apptype) {
 		HashMap<String, Application> appsByName = new HashMap<String, Application>();
 
 		for (PackageInfo packageInfo : packageInfoList) {
 			Application app = appFromPackage(packageInfo, packageManager);
 			String name = app.getName();
 			if (!appsByName.containsKey(name))
-				appsByName.put(name, app);
+				switch (apptype) {
+				case 0:
+					appsByName.put(name, app);
+					break;
+				case 1:
+					if (app.isSystem != 0) {
+						appsByName.put(name, app);
+					}
+					break;
+				case 2:
+					if (app.isSystem == 0) {
+						appsByName.put(name, app);
+					}
+				default:
+					break;
+				}
 		}
 
 		return new ArrayList<Application>(appsByName.values());
@@ -227,10 +264,13 @@ public class AppCollector {
 		String appName = appInfo.loadLabel(packageManager).toString();
 		String packageName = packageInfo.packageName;
 		String version = packageInfo.versionName;
+		long installedTime = packageInfo.firstInstallTime;
+		long updatedTime = packageInfo.lastUpdateTime;
 		int uid = appInfo.uid;
+		int isSystem = appInfo.flags & ApplicationInfo.FLAG_SYSTEM;
 		Drawable icon = appInfo.loadIcon(packageManager);
 		Application app = new Application(appName, packageName, uid, version,
-				icon);
+				icon, installedTime, updatedTime, isSystem);
 		return app;
 	}
 

@@ -5,7 +5,6 @@
 package edu.wpi.cs.peds.hmn.stats.apps;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,46 +38,6 @@ public class GlobalAppList {
 	private PackageManager packageManager;
 	private ActivityManager activityManager;
 
-	// The list of system packages to exclude from the app list
-	private final List<String> systemPackages = Arrays.asList(
-			// "android", // Android System
-			"com.android.backupconfirm",
-			"com.android.sharedstoragebackup",
-			"com.android.wallpaper.holospiral",
-			"com.google.android.voicesearch",
-			"com.google.android.inputmethod.latin", // Android Keyboard
-			"com.android.providers.calendar", // Calendar Storage
-			"com.google.android.deskclock", // Clock
-			"com.android.providers.contacts", // Contacts Storage
-			"com.android.providers.drm", // DRM Protected Content Storage
-			"com.android.providers.downloads", // Download Manager
-			"com.android.location.fused", // Fused Location
-			"com.google.android.gallery3d", // Gallery
-			"com.android.keychain", // Key Chain
-			"com.android.launcher", // Launcher
-			"com.android.providers.media", // Media Storage
-			"com.android.musicfx", // MusicFX
-			"com.android.defcontainer", // Package Access Helper
-			"com.android.phasebeam", // Phase Beam
-			"com.android.phone", // Phone
-			"com.android.providers.telephony", // Phone/Messaging Storage
-			"com.android.stk", // SIM Toolkit
-			"com.android.providers.applications", // Search Applications
-			"com.android.providers.settings", // Settings Storage
-			"com.android.systemui", // System UI
-			"com.android.providers.userdictionary", // User Dictionary
-			"android", "com.android.certinstaller", "com.android.contacts",
-			"com.android.dreams.basic", "com.android.facelock",
-			"com.android.htmlviewer", "com.android.inputdevices",
-			"com.android.mms", "com.android.packageinstaller",
-			"com.android.vpndialogs", "com.google.android.backup",
-			"com.google.android.configupdater", "com.google.android.exchange",
-			"com.google.android.gsf", "com.google.android.gsf.login",
-			"com.google.android.location",
-			"com.google.android.onetimeinitializer",
-			"com.google.android.partnersetup",
-			"com.google.android.syncadapters.bookmarks",
-			"com.google.android.tts", "com.tf.thinkdroid.sg");
 	private static List<Application> systemApps;
 
 	public static void init(PackageManager packageManager,
@@ -104,7 +63,7 @@ public class GlobalAppList {
 		this.packageManager = packageManager;
 		this.activityManager = activityManager;
 		allApps = AppCollector.getAllApps(packageManager);
-		systemApps = findSystemApps();
+		systemApps = AppCollector.getSysApps(packageManager);
 		if (!HMNAndroidActivity.hideSystemApp) {
 			allApps.removeAll(systemApps);
 		}
@@ -113,23 +72,6 @@ public class GlobalAppList {
 		toSendApps = getForegroundApps();
 //		toSendApps = getRunningApps();
 		displayedApps = allApps;
-	}
-
-	/**
-	 * Finds systems apps according to the hard coded list.
-	 * 
-	 * @return a list of Application objects that represent the system apps to
-	 *         be ignored.
-	 */
-	private List<Application> findSystemApps() {
-		if (allApps == null)
-			return null;
-
-		List<Application> systemApps = new ArrayList<Application>();
-		for (Application app : allApps)
-			if (systemPackages.contains(app.packageName))
-				systemApps.add(app);
-		return systemApps;
 	}
 
 	/**

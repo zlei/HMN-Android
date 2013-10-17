@@ -4,6 +4,7 @@
  */
 package edu.wpi.cs.peds.hmn.appstatviewer;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import android.content.Context;
@@ -88,9 +89,14 @@ public class AppListAdapter extends BaseAdapter {
 
 		int cost = app.cost;
 		int benefit = app.benefit;
+		long installedtime = app.installedTime;
+		long updatedtime = app.updatedTime;
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-		costText.setText("Cost: " + cost);
-		benefitText.setText("Benefit: " + benefit);
+		String installTime = dateFormat.format(installedtime);
+		String updateTime = dateFormat.format(updatedtime);
+		costText.setText("Installed: " + installTime);
+		benefitText.setText("Updated: " + updateTime);
 
 		return convertView;
 	}

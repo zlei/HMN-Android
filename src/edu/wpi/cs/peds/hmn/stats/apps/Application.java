@@ -43,7 +43,9 @@ public class Application implements Serializable {
 	public String packageName;
 	public String version;
 	public Integer uid;
-
+	public long installedTime;
+	public long updatedTime;
+	public int isSystem;
 	public Integer cost = 0;
 	public Integer benefit = 0;
 
@@ -65,12 +67,15 @@ public class Application implements Serializable {
 	private long lastStateUpdateTime;
 
 	public Application(String name, String packageName, int uid,
-			String version, Drawable icon) {
+			String version, Drawable icon, long installedTime, long updatedTime, int isSystem) {
 		this.name = name;
 		this.packageName = packageName;
 		this.uid = uid;
 		this.version = version;
 		this.icon = icon;
+		this.installedTime = installedTime;
+		this.updatedTime = updatedTime;
+		this.isSystem = isSystem;
 		netUsage = new NetUsageList();
 		cumulativeStats = new NetworkStats();
 		powerStats = new PowerStats();
@@ -264,6 +269,8 @@ public class Application implements Serializable {
 		StringBuilder appStr = new StringBuilder();
 		appStr.append(String.format("Name:" + this.getName()));
 		appStr.append(String.format("\nUID: " + this.uid));
+		appStr.append(String.format("\nInstalled Time:" + this.installedTime));
+		appStr.append(String.format("\nLast Updated Time:" + this.updatedTime));
 		appStr.append(String.format("\nUser Rating: " + this.userRating));
 		appStr.append(String.format("\nOverall Rating: " + this.dbRating));
 		// appStr.append(String.format("Cost: ", cost));
