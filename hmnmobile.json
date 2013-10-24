@@ -51,6 +51,12 @@
 			"properties": {
 				"wifi": {"$ref": "#/definitions/networkData"},
 				"mobile": {"$ref": "#/definitions/networkData"},
+				"gprs": {"$ref": "#/definitions/networkData"},
+				"edge": {"$ref": "#/definitions/networkData"},
+				"cdma": {"$ref": "#/definitions/networkData"},
+				"hspa": {"$ref": "#/definitions/networkData"},
+				"lte": {"$ref": "#/definitions/networkData"},
+				"unknownmobile": {"$ref": "#/definitions/networkData"},
 				"wimax": {"$ref": "#/definitions/networkData"},
 				"bluetooth": {"$ref": "#/definitions/networkData"},
 				"ethernet": {"$ref": "#/definitions/networkData"},
@@ -64,7 +70,8 @@
 			"required": ["timestamp"],
 			"properties": {
 				"timestamp": {"description": "The time this data was collected, in miliseconds from epoch", "type": "number"},
-				"connection": {"enum": ["wifi", "mobile", "wimax", "bluetooth", "ethernet", "other"]}
+				"connection": {"enum": ["wifi", "mobile", "gprs", "edge", "cdma", "hspa", "lte", "unknowmobile", "wimax", "bluetooth", "ethernet", "other"]},
+				"strength": {"type": "number"}
 			},
 			"$ref": "#/definitions/networkData",
 			"additionalProperties": false

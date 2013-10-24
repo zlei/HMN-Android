@@ -24,6 +24,7 @@ import edu.wpi.cs.peds.hmn.app.R;
 import edu.wpi.cs.peds.hmn.stats.apps.Application;
 import edu.wpi.cs.peds.hmn.stats.apps.GlobalAppList;
 import edu.wpi.cs.peds.hmn.stats.costbenefit.CostBenefitActivity;
+import edu.wpi.cs.peds.hmn.stats.net.NetworkStrength;
 
 /**
  * A class representing an application's detail view.
@@ -72,6 +73,10 @@ public class ApplicationDetailViewActivity extends Activity {
 			e.printStackTrace();
 			return;
 		}
+
+		NetworkStrength network = new NetworkStrength();
+		network.updateNetworkStrength(this);
+
 		// Uses the transmitted UID to lookup the appropriate Application object
 		chosenApp = GlobalAppList.getInstance().getApp(uid);
 

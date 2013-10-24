@@ -55,14 +55,14 @@ public class AppCollectorService extends Service implements IObservable {
 	/**
 	 * The data gathering task, which is set to run every 5 seconds.
 	 */
-	private final long dataGatheringPeriod = 5000000;
+	private final long dataGatheringPeriod = 5000;
 	public static long timestamp = 0;
 	
 	private Runnable dataGatheringTask = new Runnable() {
 		public void run() {
 			timestamp = System.currentTimeMillis();
 			Log.i(HmnLog.HMN_LOG_TAG, "Collecting data.");
-			Log.i(HmnLog.HMN_LOG_TAG, "TIMESTAMP!!!!" + timestamp);
+//			Log.i(HmnLog.HMN_LOG_TAG, "TIMESTAMP!!!!" + timestamp);
 			GlobalDataCollector.getInstance().gatherStats(
 					getApplicationContext());
 			notifyObservers();
@@ -74,7 +74,7 @@ public class AppCollectorService extends Service implements IObservable {
 	/**
 	 * The data sending task, which is set to run every 30 seconds.
 	 */
-	private final long dataSendingPeriod = 1000000000;
+	private final long dataSendingPeriod = 5000;
 	private Runnable dataSendingTask = new Runnable() {
 		public void run() {
 			Log.i(HmnLog.HMN_LOG_TAG, "Transmitting data.");

@@ -48,14 +48,9 @@ public class JSONParser {
 			url = URL + appname;
 			url = url.replaceAll(" ", "%20");
 
-			Log.i(HmnLog.HMN_LOG_TAG, "APPNAME!!!" + appname);
-			Log.i(HmnLog.HMN_LOG_TAG, "URL!!!" + url);
 			HttpGet get = new HttpGet(url.toString());
-			Log.i(HmnLog.HMN_LOG_TAG, "client.execute(get)");
-			Log.i(HmnLog.HMN_LOG_TAG, "URL" + url.toString());
 			HttpResponse r = client.execute(get);
 			int status = r.getStatusLine().getStatusCode();
-			Log.i(HmnLog.HMN_LOG_TAG, "STATUS" + status);
 
 			if (status == 200) {
 				HttpEntity e = r.getEntity();
@@ -65,7 +60,7 @@ public class JSONParser {
 				// JSONObject appinfo = timeline.getJSONObject(0);
 
 				// Log.i(HmnLog.HMN_LOG_TAG, "TIMELINE!" + timeline.toString());
-				Log.i(HmnLog.HMN_LOG_TAG, "appinfo!" + appinfo.toString());
+			//	Log.i(HmnLog.HMN_LOG_TAG, "appinfo!" + appinfo.toString());
 				return appinfo;
 			}
 			return null;
@@ -80,8 +75,6 @@ public class JSONParser {
 						APP_ID = chosenApp.packageName;
 					// Log.i(HmnLog.HMN_LOG_TAG, APP_ID);
 					JSONObject json = appInfo(APP_ID);
-					Log.i(HmnLog.HMN_LOG_TAG, "json.getString(params[0])!"
-							+ json.getString(params[0]));
 					return json.getString(params[0]);
 				} catch (ClientProtocolException e) {
 					e.printStackTrace();
@@ -94,7 +87,7 @@ public class JSONParser {
 			}
 
 			protected void onPostExecute(String result) {
-				Log.i(HmnLog.HMN_LOG_TAG, result);
+//				Log.i(HmnLog.HMN_LOG_TAG, result);
 				chosenApp.dbRating = Float.parseFloat(result);
 			}
 		}

@@ -8,6 +8,7 @@ import java.util.Locale;
 
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import edu.wpi.cs.peds.hmn.stats.net.NetworkStrength;
 
 /**
  * @author Richard Brown, rpb111@wpi.edu
@@ -15,18 +16,20 @@ import android.net.NetworkInfo;
  * 
  */
 public enum NetDevice {
-	WIFI("wifi"), MOBILE("mobile"), WIMAX("wimax"), BLUETOOTH("bluetooth"), ETHERNET(
-			"ethernet"), OTHER("other");
+	WIFI("wifi"), MOBILE("mobile"), UNKNOWNMOBILE("unknownmobile"), GPRS("gprs"), EDGE(
+			"edge"), CDMA("cdma"), HSPA("hspa"), LTE("lte"), WIMAX("wimax"), BLUETOOTH(
+			"bluetooth"), ETHERNET("ethernet"), OTHER("other");
 
 	private final String name;
 
 	/**
-	 * Creates a new (named) network connection type
+	 * Creates a new (named) network connection type *
 	 * 
 	 * @param name
 	 */
 	private NetDevice(String name) {
 		this.name = name;
+
 	}
 
 	/**
@@ -39,6 +42,8 @@ public enum NetDevice {
 	 */
 	public static NetDevice determineNetworkConnection(NetworkInfo activeNetwork) {
 		NetDevice connection = OTHER;
+		NetworkStrength networkstrength = new NetworkStrength();
+		int mobileType = networkstrength.getMobileType();
 		if (activeNetwork != null) {
 			switch (activeNetwork.getType()) {
 			case ConnectivityManager.TYPE_WIFI:
@@ -48,9 +53,27 @@ public enum NetDevice {
 			case ConnectivityManager.TYPE_MOBILE_DUN:
 			case ConnectivityManager.TYPE_MOBILE_HIPRI:
 			case ConnectivityManager.TYPE_MOBILE_MMS:
-			case ConnectivityManager.TYPE_MOBILE_SUPL:
-				connection = MOBILE;
-				break;
+			case ConnectivityManager.TYPE_MOBILE_SUPL: {
+				if (mobileType == 1) {
+					connection = GPRS;
+					break;
+				} else if (mobileType == 2) {
+					connection = EDGE;
+					break;
+				} else if (mobileType == 4) {
+					connection = CDMA;
+					break;
+				} else if (mobileType == 10) {
+					connection = HSPA;
+					break;
+				} else if (mobileType == 13) {
+					connection = LTE;
+					break;
+				} else {
+					connection = UNKNOWNMOBILE;
+					break;
+				}
+			}
 			case ConnectivityManager.TYPE_WIMAX:
 				connection = WIMAX;
 				break;

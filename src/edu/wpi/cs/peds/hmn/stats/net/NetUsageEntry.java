@@ -28,6 +28,7 @@ public class NetUsageEntry extends NetworkStats implements Serializable {
 	
 	private final SimpleDateFormat dateFormatter = new SimpleDateFormat("MM-dd-yyyy hh:mm:ss.SSSa",Locale.US);
 	public NetDevice connectionType;
+	private NetworkStrength strength = new NetworkStrength();
 	public Date currentDateStamp;
 	private long timestamp;
 	public NetUsageEntry(NetDevice currentNetEnvironment, NetworkStats newStats)
@@ -55,6 +56,7 @@ public class NetUsageEntry extends NetworkStats implements Serializable {
 		JSONObject json = super.toJSON();
 		json.put("timestamp", timestamp);
 		json.put("connection", connectionType.toString().toLowerCase(Locale.ENGLISH));  // needs to be updated to support all types
+		json.put("strength", strength.getWifiStrength());
 		return json;
 	}
 	

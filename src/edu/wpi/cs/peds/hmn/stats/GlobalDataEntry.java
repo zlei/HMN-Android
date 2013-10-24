@@ -52,7 +52,7 @@ public class GlobalDataEntry {
 	// Globalize all timestamp in every sending
 	public void setGlobalTimestamp() {
 		timestamp = System.currentTimeMillis();
-		Log.i(HmnLog.HMN_LOG_TAG, "System timestamp!!!!!!" + timestamp);
+//		Log.i(HmnLog.HMN_LOG_TAG, "System timestamp!!!!!!" + timestamp);
 	}
 
 	public long getGlobalTimestamp() {
